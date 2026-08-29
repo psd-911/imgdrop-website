@@ -1,0 +1,181 @@
+﻿<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Compress Images to 20KB, 50KB, 100KB Online Free | ImgDrop</title>
+  <meta name="description" content="Free online image compressor. Compress photos to exact 20KB, 50KB, or 100KB for passport, visa, and government exam portal uploads without losing quality. 100% private.">
+  <link rel="canonical" href="https://imgdrop.me/compress.html">
+  <link rel="icon" type="image/png" href="assets/icon48.png">
+
+  <!-- Open Graph / Facebook -->
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://imgdrop.me/compress.html">
+  <meta property="og:title" content="Compress Images to Exact KB Size Online | ImgDrop">
+  <meta property="og:description" content="100% private in-browser image compressor. Hit exact 20KB, 50KB, 100KB file caps for portal uploads with zero cloud lag.">
+  <meta property="og:image" content="https://imgdrop.me/assets/icon128.png">
+
+  <!-- Twitter -->
+  <meta name="twitter:card" content="summary">
+  <meta name="twitter:title" content="Compress Images to Exact KB Size Online | ImgDrop">
+  <meta name="twitter:description" content="100% private in-browser image compressor. Hit exact 20KB, 50KB, 100KB file caps for portal uploads with zero cloud lag.">
+  <meta name="twitter:image" content="https://imgdrop.me/assets/icon128.png">
+
+  <!-- Google Structured Data (JSON-LD) -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "SoftwareApplication",
+    "name": "ImgDrop Image Compressor",
+    "operatingSystem": "All",
+    "applicationCategory": "MultimediaApplication",
+    "offers": {
+      "@type": "Offer",
+      "price": "0",
+      "priceCurrency": "USD"
+    },
+    "description": "Free 100% client-side image compression tool to reduce images to exact 20KB, 50KB, or 100KB target sizes without server upload."
+  }
+  </script>
+
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+  <header class="site-nav">
+    <a href="index.html" class="brand-wrapper">
+      <img src="assets/icon48.png" alt="ImgDrop Logo" class="brand-icon">
+      <span class="brand-name">ImgDrop</span>
+      <span class="brand-tag">COMPRESS</span>
+    </a>
+
+    <nav>
+      <ul class="nav-links">
+        <li><a href="index.html" class="nav-link">All Tools</a></li>
+        <li><a href="convert.html" class="nav-link">Convert</a></li>
+        <li><a href="compress.html" class="nav-link active">Compress</a></li>
+        <li><a href="resize.html" class="nav-link">Resize</a></li>
+        <li><a href="crop.html" class="nav-link">Crop</a></li>
+        <li><a href="pdf.html" class="nav-link">PDF Tools</a></li>
+      </ul>
+    </nav>
+
+    <div class="nav-actions">
+      <button id="themeToggleBtn" class="theme-toggle-btn">☀️ Light</button>
+      <a href="https://chromewebstore.google.com/detail/imgdrop-image-converter-c/gbpkoodllffbiaamdiciellkghlmgcdj" target="_blank" class="chrome-install-btn">
+        Add to Chrome (Free)
+      </a>
+    </div>
+  </header>
+
+  <main class="main-content">
+    <div class="ad-slot-leaderboard">
+      <span>Advertisement Placeholder (728 × 90)</span>
+    </div>
+
+    <div class="hero-header">
+      <div class="hero-badge">🗜️ Target Size Image Compression</div>
+      <h1 class="hero-title">Compress Images to 20KB, 50KB or 100KB</h1>
+      <p class="hero-subtitle">Instantly hit strict government exam, visa, and passport file caps without pixelation. Zero server upload.</p>
+    </div>
+
+    <div class="tool-card">
+      <div id="dropzone" class="dropzone-container">
+        <input type="file" id="fileInput" class="hidden" accept="image/*" multiple>
+        <div class="drop-icon-circle">
+          <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+            <polyline points="4 14 10 14 10 20"/>
+            <polyline points="20 10 14 10 14 4"/>
+            <line x1="14" y1="10" x2="21" y2="3"/>
+            <line x1="3" y1="21" x2="10" y2="14"/>
+          </svg>
+        </div>
+        <h2 class="dropzone-title">Drop photo to compress to target size</h2>
+        <p class="dropzone-sub">Supports JPG, PNG, WebP • Instant binary search compression</p>
+      </div>
+
+      <div id="resultSection" class="result-section hidden">
+        <div>
+          <div class="preview-box-wrapper">
+            <img id="previewImg" src="" alt="Compressed Preview">
+          </div>
+          <div class="stats-bar">
+            <span>Original: <strong id="origSizeText">0 KB</strong></span>
+            <span id="savingsBadge" class="savings-pill">-0% Savings</span>
+            <span>Output: <strong id="outputSizeText">0 KB</strong></span>
+          </div>
+          <div style="display:flex; flex-direction:column; gap:8px; margin-top:16px;">
+            <button id="btnDownload" class="btn-primary">Download Compressed Image</button>
+            <button id="btnReset" class="btn-secondary">🔄 Compress Another Image</button>
+          </div>
+        </div>
+
+        <div class="settings-panel">
+          
+          <!-- High-Intent Quick Target Size Pills -->
+          <div class="control-group">
+            <label class="control-label">Popular Target Limits</label>
+            <div class="pills-grid" style="grid-template-columns: repeat(auto-fit, minmax(100px, 1fr));">
+              <button class="pill-btn target-size-preset" data-kb="20">20 KB (Gov/Exam)</button>
+              <button class="pill-btn target-size-preset active" data-kb="50">50 KB (Passport)</button>
+              <button class="pill-btn target-size-preset" data-kb="100">100 KB (Visa)</button>
+              <button class="pill-btn target-size-preset" data-kb="200">200 KB (Email)</button>
+              <button class="pill-btn target-size-preset" data-kb="500">500 KB (Web)</button>
+            </div>
+          </div>
+
+          <div class="control-group">
+            <label class="control-label">Custom Max File Size (in KB)</label>
+            <input type="number" id="targetSizeInput" placeholder="e.g. 50" value="50" class="input-field">
+            <span style="font-size:11.5px; color:var(--text-secondary);">The compressor will calculate the exact quality needed to stay below this limit.</span>
+          </div>
+
+          <div class="control-group">
+            <div style="display:flex; justify-content:space-between; align-items:center;">
+              <label class="control-label">Or Manual Quality Slider</label>
+              <span id="qualityValText" style="font-size:12px; font-weight:700;">85%</span>
+            </div>
+            <input type="range" id="qualitySlider" min="10" max="100" value="85" style="width:100%; cursor:pointer;">
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="ad-slot-native">
+      <span>Advertisement Placeholder</span>
+    </div>
+
+    <section class="seo-section">
+      <h2 class="seo-title">Frequently Asked Questions</h2>
+      <div class="faq-list">
+        <div class="faq-item">
+          <h3 class="faq-q">Why do passport and visa forms reject my photos?</h3>
+          <p class="faq-a">Most government, exam, and visa portals enforce strict file size caps (such as maximum 50 KB or 100 KB). Standard image tools usually overshoot or undershoot this limit. ImgDrop automatically calibrates the compression curve in your browser to deliver the sharpest possible image that remains under your exact KB limit.</p>
+        </div>
+        <div class="faq-item">
+          <h3 class="faq-q">Are my private photos and ID cards safe?</h3>
+          <p class="faq-a">Yes! Unlike other online compressors that upload your sensitive documents to cloud servers, ImgDrop processes everything locally on your own computer. Your photos never leave your machine.</p>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <div class="footer-links">
+      <a href="index.html" class="footer-link">Home</a>
+      <a href="convert.html" class="footer-link">Convert</a>
+      <a href="compress.html" class="footer-link">Compress</a>
+      <a href="resize.html" class="footer-link">Resize</a>
+      <a href="crop.html" class="footer-link">Crop</a>
+      <a href="pdf.html" class="footer-link">PDF Tools</a>
+      <a href="privacy.html" class="footer-link">Privacy Policy</a>
+    </div>
+    <p>© 2026 ImgDrop by Vinland Studio. 100% Client-Side In-Browser Image Utilities.</p>
+  </footer>
+
+  <script type="module">
+    import { ImgDropApp } from './js/app.js';
+    new ImgDropApp({ defaultMode: 'compress', defaultFormat: 'image/jpeg' });
+  </script>
+</body>
+</html>

@@ -1,0 +1,153 @@
+﻿<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Crop Images Online - Free Visual Image Cropper | ImgDrop</title>
+  <meta name="description" content="Free online image cropper. Crop images to 1:1 square, 16:9, 9:16 Instagram Reels, 4:3, or custom freeform crop with smooth drag handles and zoom/pan.">
+  <link rel="icon" type="image/png" href="assets/icon48.png">
+  <link rel="stylesheet" href="css/style.css">
+  <link rel="stylesheet" href="css/cropper.css">
+</head>
+<body>
+
+  <header class="site-nav">
+    <a href="index.html" class="brand-wrapper">
+      <img src="assets/icon48.png" alt="ImgDrop Logo" class="brand-icon">
+      <span class="brand-name">ImgDrop</span>
+      <span class="brand-tag">CROP</span>
+    </a>
+
+    <nav>
+      <ul class="nav-links">
+        <li><a href="index.html" class="nav-link">All Tools</a></li>
+        <li><a href="convert.html" class="nav-link">Convert</a></li>
+        <li><a href="compress.html" class="nav-link">Compress</a></li>
+        <li><a href="resize.html" class="nav-link">Resize</a></li>
+        <li><a href="crop.html" class="nav-link active">Crop</a></li>
+        <li><a href="pdf.html" class="nav-link">PDF Tools</a></li>
+      </ul>
+    </nav>
+
+    <div class="nav-actions">
+      <button id="themeToggleBtn" class="theme-toggle-btn">☀️ Light</button>
+      <a href="https://chromewebstore.google.com/detail/imgdrop-image-converter-c/gbpkoodllffbiaamdiciellkghlmgcdj" target="_blank" class="chrome-install-btn">
+        Add to Chrome (Free)
+      </a>
+    </div>
+  </header>
+
+  <main class="main-content">
+    <div class="ad-slot-leaderboard">
+      <span>Advertisement Placeholder (728 × 90)</span>
+    </div>
+
+    <div class="hero-header">
+      <div class="hero-badge">✂️ Precision Visual Cropper</div>
+      <h1 class="hero-title">Crop Images to Any Aspect Ratio</h1>
+      <p class="hero-subtitle">Interactive drag-and-drop crop frame with rule of thirds grid, zoom, and social media ratios.</p>
+    </div>
+
+    <div class="tool-card">
+      <div id="dropzone" class="dropzone-container">
+        <input type="file" id="fileInput" class="hidden" accept="image/*">
+        <div class="drop-icon-circle">
+          <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M6 2v14a2 2 0 0 0 2 2h14"/>
+            <path d="M18 22V8a2 2 0 0 0-2-2H2"/>
+          </svg>
+        </div>
+        <h2 class="dropzone-title">Drop image to crop</h2>
+        <p class="dropzone-sub">Click to select photo • Instant interactive editor</p>
+      </div>
+
+      <div id="resultSection" class="result-section hidden">
+        <div>
+          <div class="preview-box-wrapper" style="background:#090A0F;">
+            <div id="cropperSlot" style="width:100%; height:100%; display:flex; align-items:center; justify-content:center;"></div>
+          </div>
+          <div class="stats-bar">
+            <span>Original: <strong id="origSizeText">0 KB</strong></span>
+            <span>Output Size: <strong id="outputSizeText">0 KB</strong></span>
+          </div>
+          <div style="display:flex; flex-direction:column; gap:8px; margin-top:16px;">
+            <button id="btnDownload" class="btn-primary">Download Cropped Image</button>
+            <button id="btnReset" class="btn-secondary">🔄 Crop Another Image</button>
+          </div>
+        </div>
+
+        <div class="settings-panel">
+          <div class="control-group">
+            <label class="control-label">Aspect Ratio Presets</label>
+            <div class="pills-grid" style="grid-template-columns: repeat(3, 1fr);">
+              <button class="pill-btn crop-ratio-pill active" data-ratio="free">Free</button>
+              <button class="pill-btn crop-ratio-pill" data-ratio="1:1">1:1 Square</button>
+              <button class="pill-btn crop-ratio-pill" data-ratio="16:9">16:9 Landscape</button>
+              <button class="pill-btn crop-ratio-pill" data-ratio="9:16">9:16 Reels</button>
+              <button class="pill-btn crop-ratio-pill" data-ratio="4:3">4:3 Standard</button>
+              <button class="pill-btn crop-ratio-pill" data-ratio="3:2">3:2 Classic</button>
+            </div>
+          </div>
+
+          <div class="control-group">
+            <label class="control-label">Crop Box Dimensions (px)</label>
+            <div style="display:grid; grid-template-columns: 1fr 1fr; gap:8px;">
+              <input type="number" id="cropWidth" placeholder="Width (px)" class="input-field" readonly>
+              <input type="number" id="cropHeight" placeholder="Height (px)" class="input-field" readonly>
+            </div>
+          </div>
+
+          <div class="control-group">
+            <div style="display:flex; justify-content:space-between; align-items:center;">
+              <label class="control-label">Zoom & Pan</label>
+            </div>
+            <input type="range" id="cropZoomSlider" min="100" max="300" value="100" style="width:100%; cursor:pointer;">
+            <span style="font-size:11.5px; color:var(--text-secondary);">Zoom into fine details and drag outside the box to pan.</span>
+          </div>
+
+          <div class="control-group">
+            <label class="control-label">Export Format</label>
+            <div class="pills-grid">
+              <button class="pill-btn format-pill active" data-format="image/jpeg">JPG</button>
+              <button class="pill-btn format-pill" data-format="image/png">PNG</button>
+              <button class="pill-btn format-pill" data-format="image/webp">WebP</button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="ad-slot-native">
+      <span>Advertisement Placeholder</span>
+    </div>
+
+    <section class="seo-section">
+      <h2 class="seo-title">Image Cropper FAQs</h2>
+      <div class="faq-list">
+        <div class="faq-item">
+          <h3 class="faq-q">How to crop photos for Instagram or TikTok?</h3>
+          <p class="faq-a">Select <strong>1:1 Square</strong> for Instagram grid posts, or <strong>9:16 Reels</strong> for TikTok/Instagram Stories, then drag the box to position your subject.</p>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <div class="footer-links">
+      <a href="index.html" class="footer-link">Home</a>
+      <a href="convert.html" class="footer-link">Convert</a>
+      <a href="compress.html" class="footer-link">Compress</a>
+      <a href="resize.html" class="footer-link">Resize</a>
+      <a href="crop.html" class="footer-link">Crop</a>
+      <a href="pdf.html" class="footer-link">PDF Tools</a>
+      <a href="privacy.html" class="footer-link">Privacy Policy</a>
+    </div>
+    <p>© 2026 ImgDrop by Vinland Studio.</p>
+  </footer>
+
+  <script type="module">
+    import { ImgDropApp } from './js/app.js';
+    new ImgDropApp({ defaultMode: 'crop', defaultFormat: 'image/jpeg' });
+  </script>
+</body>
+</html>

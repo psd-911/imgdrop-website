@@ -1,0 +1,20 @@
+﻿User-agent: *
+Allow: /
+
+# Allow AI Search Engines (GEO)
+User-agent: Googlebot
+Allow: /
+
+User-agent: Bingbot
+Allow: /
+
+User-agent: GPTBot
+Allow: /
+
+User-agent: PerplexityBot
+Allow: /
+
+User-agent: ClaudeBot
+Allow: /
+
+Sitemap: https://imgdrop.me/sitemap.xml

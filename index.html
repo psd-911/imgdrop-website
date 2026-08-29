@@ -1,0 +1,266 @@
+﻿<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>ImgDrop - Free 100% Private Online Image Converter, Compressor & PDF Tools</title>
+  <meta name="description" content="Free local image converter, compressor, resizer, and PDF maker. 100% in-browser processing with zero server uploads for maximum speed and privacy.">
+  <link rel="canonical" href="https://imgdrop.me/">
+  <link rel="icon" type="image/png" href="assets/icon48.png">
+
+  <!-- Open Graph / Facebook -->
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://imgdrop.me/">
+  <meta property="og:title" content="ImgDrop - 100% Private Image & PDF Suite">
+  <meta property="og:description" content="Convert, compress, resize, and crop images directly in your browser with zero cloud uploads and total privacy.">
+  <meta property="og:image" content="https://imgdrop.me/assets/icon128.png">
+
+  <!-- Twitter -->
+  <meta name="twitter:card" content="summary">
+  <meta name="twitter:title" content="ImgDrop - 100% Private Image & PDF Suite">
+  <meta name="twitter:description" content="Convert, compress, resize, and crop images directly in your browser with zero cloud uploads and total privacy.">
+  <meta name="twitter:image" content="https://imgdrop.me/assets/icon128.png">
+
+  <!-- JSON-LD Structured Data for Search Engines & AI Crawlers -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "WebApplication",
+    "name": "ImgDrop",
+    "url": "https://imgdrop.me/",
+    "applicationCategory": "MultimediaApplication",
+    "operatingSystem": "All",
+    "browserRequirements": "Requires HTML5 Canvas support",
+    "offers": {
+      "@type": "Offer",
+      "price": "0",
+      "priceCurrency": "USD"
+    },
+    "description": "100% private, local in-browser image converter, compressor, and resizer with zero server upload."
+  }
+  </script>
+
+  <link rel="stylesheet" href="css/style.css">
+  <link rel="stylesheet" href="css/cropper.css">
+</head>
+<body>
+
+  <!-- Navigation Bar -->
+  <header class="site-nav">
+    <a href="index.html" class="brand-wrapper">
+      <img src="assets/icon48.png" alt="ImgDrop Logo" class="brand-icon">
+      <span class="brand-name">ImgDrop</span>
+      <span class="brand-tag">WEB</span>
+    </a>
+
+    <nav>
+      <ul class="nav-links">
+        <li><a href="index.html" class="nav-link active">All Tools</a></li>
+        <li><a href="convert.html" class="nav-link">Convert</a></li>
+        <li><a href="compress.html" class="nav-link">Compress</a></li>
+        <li><a href="resize.html" class="nav-link">Resize</a></li>
+        <li><a href="crop.html" class="nav-link">Crop</a></li>
+        <li><a href="pdf.html" class="nav-link">PDF Tools</a></li>
+      </ul>
+    </nav>
+
+    <div class="nav-actions">
+      <button id="themeToggleBtn" class="theme-toggle-btn">☀️ Light</button>
+      <a href="https://chromewebstore.google.com/detail/imgdrop-image-converter-c/gbpkoodllffbiaamdiciellkghlmgcdj" target="_blank" class="chrome-install-btn">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm0 18c-4.41 0-8-3.59-8-8s3.59-8 8-8 8 3.59 8 8-3.59 8-8 8zm-1-13h2v6h-2zm0 8h2v2h-2z"/></svg>
+        Add to Chrome (Free)
+      </a>
+    </div>
+  </header>
+
+  <!-- Main Container -->
+  <main class="main-content">
+
+    <!-- Top Leaderboard Ad Slot -->
+    <div class="ad-slot-leaderboard">
+      <span>Advertisement Placeholder (728 × 90)</span>
+    </div>
+
+    <!-- Hero Header -->
+    <div class="hero-header">
+      <div class="hero-badge">🔒 100% Client-Side • Zero Server Upload</div>
+      <h1 class="hero-title">Free, Instant Image & PDF Suite</h1>
+      <p class="hero-subtitle">Convert, compress, resize, and crop images directly in your browser with zero quality loss and complete privacy.</p>
+    </div>
+
+    <!-- Main Tool Container -->
+    <div class="tool-card">
+      
+      <!-- Dropzone -->
+      <div id="dropzone" class="dropzone-container">
+        <input type="file" id="fileInput" class="hidden" accept="image/*,.pdf" multiple>
+        <div class="drop-icon-circle">
+          <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/>
+            <polyline points="17 8 12 3 7 8"/>
+            <line x1="12" y1="3" x2="12" y2="15"/>
+          </svg>
+        </div>
+        <h2 class="dropzone-title">Drop images or click to upload</h2>
+        <p class="dropzone-sub">Supports JPG, PNG, WebP, AVIF, and PDF • Unlimited batch files</p>
+      </div>
+
+      <!-- Result & Controls Workspace (Hidden until file selected) -->
+      <div id="resultSection" class="result-section hidden">
+        
+        <!-- Left: Preview Box -->
+        <div>
+          <div class="preview-box-wrapper">
+            <img id="previewImg" src="" alt="Processed Preview">
+            <div id="cropperSlot" class="hidden" style="width:100%; height:100%;"></div>
+          </div>
+
+          <div class="stats-bar">
+            <span>Original: <strong id="origSizeText">0 KB</strong></span>
+            <span id="savingsBadge" class="savings-pill">-0% Savings</span>
+            <span>Output: <strong id="outputSizeText">0 KB</strong></span>
+          </div>
+
+          <!-- Action Buttons -->
+          <div style="display:flex; flex-direction:column; gap:8px; margin-top:16px;">
+            <button id="btnDownload" class="btn-primary">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
+              Download Converted Image
+            </button>
+            <button id="btnReset" class="btn-secondary">🔄 Process Another Image</button>
+          </div>
+        </div>
+
+        <!-- Right: Settings Panel -->
+        <div class="settings-panel">
+          <div class="control-group">
+            <label class="control-label">Target Format</label>
+            <div class="pills-grid">
+              <button class="pill-btn format-pill active" data-format="image/jpeg">JPG</button>
+              <button class="pill-btn format-pill" data-format="image/png">PNG</button>
+              <button class="pill-btn format-pill" data-format="image/webp">WebP</button>
+              <button class="pill-btn format-pill" data-format="image/avif">AVIF</button>
+            </div>
+          </div>
+
+          <div class="control-group">
+            <div style="display:flex; justify-content:space-between; align-items:center;">
+              <label class="control-label">Quality Level</label>
+              <span id="qualityValText" style="font-size:12px; font-weight:700;">85%</span>
+            </div>
+            <input type="range" id="qualitySlider" min="10" max="100" value="85" style="width:100%; cursor:pointer;">
+          </div>
+
+          <div class="control-group">
+            <label class="control-label">Target Max File Size (Optional)</label>
+            <input type="number" id="targetSizeInput" placeholder="e.g. 50 (for max 50 KB output)" class="input-field">
+          </div>
+
+          <div class="control-group">
+            <label class="control-label">Exact Resize Dimensions (px)</label>
+            <div style="display:grid; grid-template-columns: 1fr 1fr; gap:8px;">
+              <input type="number" id="resizeWidth" placeholder="Width (px)" class="input-field">
+              <input type="number" id="resizeHeight" placeholder="Height (px)" class="input-field">
+            </div>
+            <label style="font-size:12px; color:var(--text-secondary); margin-top:4px; display:flex; align-items:center; gap:6px; cursor:pointer;">
+              <input type="checkbox" id="lockAspect" checked> Lock Aspect Ratio
+            </label>
+          </div>
+
+          <!-- Chrome Extension Banner Promotion -->
+          <div style="background:var(--surface-hover); border:1px solid var(--border-glass); border-radius:var(--radius-sm); padding:14px; margin-top:8px;">
+            <div style="font-size:13px; font-weight:700; margin-bottom:4px;">⚡ Want 1-Click Conversions on Webpages?</div>
+            <p style="font-size:12px; color:var(--text-secondary); margin-bottom:10px;">Drag and convert images directly inside any website without opening new tabs.</p>
+            <a href="https://chromewebstore.google.com/detail/imgdrop-image-converter-c/gbpkoodllffbiaamdiciellkghlmgcdj" target="_blank" class="chrome-install-btn" style="font-size:11.5px; padding:6px 12px;">Install ImgDrop Extension ➔</a>
+          </div>
+        </div>
+
+      </div>
+
+    </div>
+
+    <!-- Native Middle Ad Slot -->
+    <div class="ad-slot-native">
+      <span>Advertisement Placeholder (Responsive Display Ad)</span>
+    </div>
+
+    <!-- Feature Grid Showcase -->
+    <section class="features-grid">
+      <a href="convert.html" class="feature-card">
+        <div class="feature-icon-box">🔄</div>
+        <h3 class="feature-title">Image Converter</h3>
+        <p class="feature-desc">Convert WebP, PNG, JPG, and AVIF instantly with high-fidelity color reproduction.</p>
+      </a>
+
+      <a href="compress.html" class="feature-card">
+        <div class="feature-icon-box">🗜️</div>
+        <h3 class="feature-title">Image Compressor</h3>
+        <p class="feature-desc">Reduce file size up to 90% while maintaining crisp sharpness for web & email.</p>
+      </a>
+
+      <a href="resize.html" class="feature-card">
+        <div class="feature-icon-box">📐</div>
+        <h3 class="feature-title">Image Resizer</h3>
+        <p class="feature-desc">Resize pixel dimensions and scale images with aspect-ratio locking.</p>
+      </a>
+
+      <a href="crop.html" class="feature-card">
+        <div class="feature-icon-box">✂️</div>
+        <h3 class="feature-title">Interactive Cropper</h3>
+        <p class="feature-desc">Visual drag-and-drop crop tool with 1:1, 16:9, 9:16, and custom aspect ratios.</p>
+      </a>
+
+      <a href="pdf.html" class="feature-card">
+        <div class="feature-icon-box">📄</div>
+        <h3 class="feature-title">PDF Tools</h3>
+        <p class="feature-desc">Merge multiple photos into a single multi-page PDF document locally.</p>
+      </a>
+
+      <div class="feature-card">
+        <div class="feature-icon-box">🛡️</div>
+        <h3 class="feature-title">100% Private</h3>
+        <p class="feature-desc">All processing happens in your browser. Your images are never uploaded to any server.</p>
+      </div>
+    </section>
+
+    <!-- SEO & FAQ Section -->
+    <section class="seo-section">
+      <h2 class="seo-title">Frequently Asked Questions</h2>
+      <div class="faq-list">
+        <div class="faq-item">
+          <h3 class="faq-q">Are my images uploaded to your servers?</h3>
+          <p class="faq-a">No! ImgDrop runs 100% locally inside your browser using the HTML5 Canvas API. Your photos never leave your device, ensuring total privacy and instantaneous processing.</p>
+        </div>
+        <div class="faq-item">
+          <h3 class="faq-q">How do I convert WebP images to JPG?</h3>
+          <p class="faq-a">Simply drag and drop your .webp file into the upload box above, ensure "JPG" is selected, and click Download. Your file will convert in under a second.</p>
+        </div>
+        <div class="faq-item">
+          <h3 class="faq-q">Is ImgDrop free with unlimited usage?</h3>
+          <p class="faq-a">Yes, ImgDrop is completely free with no daily limits, subscriptions, or watermarks.</p>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- Site Footer -->
+  <footer class="site-footer">
+    <div class="footer-links">
+      <a href="convert.html" class="footer-link">Convert</a>
+      <a href="compress.html" class="footer-link">Compress</a>
+      <a href="resize.html" class="footer-link">Resize</a>
+      <a href="crop.html" class="footer-link">Crop</a>
+      <a href="pdf.html" class="footer-link">PDF Tools</a>
+      <a href="privacy.html" class="footer-link">Privacy Policy</a>
+      <a href="terms.html" class="footer-link">Terms of Service</a>
+    </div>
+    <p>© 2026 ImgDrop by Vinland Studio. All rights reserved. 100% Client-Side In-Browser Image Utilities.</p>
+  </footer>
+
+  <script type="module">
+    import { ImgDropApp } from './js/app.js';
+    new ImgDropApp({ defaultMode: 'convert', defaultFormat: 'image/jpeg' });
+  </script>
+</body>
+</html>

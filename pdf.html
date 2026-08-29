@@ -1,0 +1,143 @@
+﻿<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Images to PDF Online - Free Multi-Page PDF Creator | ImgDrop</title>
+  <meta name="description" content="Combine JPG, PNG, and WebP images into a single multi-page PDF document online. 100% private, free, and instant in-browser PDF creator.">
+  <link rel="icon" type="image/png" href="assets/icon48.png">
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+  <header class="site-nav">
+    <a href="index.html" class="brand-wrapper">
+      <img src="assets/icon48.png" alt="ImgDrop Logo" class="brand-icon">
+      <span class="brand-name">ImgDrop</span>
+      <span class="brand-tag">PDF</span>
+    </a>
+
+    <nav>
+      <ul class="nav-links">
+        <li><a href="index.html" class="nav-link">All Tools</a></li>
+        <li><a href="convert.html" class="nav-link">Convert</a></li>
+        <li><a href="compress.html" class="nav-link">Compress</a></li>
+        <li><a href="resize.html" class="nav-link">Resize</a></li>
+        <li><a href="crop.html" class="nav-link">Crop</a></li>
+        <li><a href="pdf.html" class="nav-link active">PDF Tools</a></li>
+      </ul>
+    </nav>
+
+    <div class="nav-actions">
+      <button id="themeToggleBtn" class="theme-toggle-btn">☀️ Light</button>
+      <a href="https://chromewebstore.google.com/detail/imgdrop-image-converter-c/gbpkoodllffbiaamdiciellkghlmgcdj" target="_blank" class="chrome-install-btn">
+        Add to Chrome (Free)
+      </a>
+    </div>
+  </header>
+
+  <main class="main-content">
+    <div class="ad-slot-leaderboard">
+      <span>Advertisement Placeholder (728 × 90)</span>
+    </div>
+
+    <div class="hero-header">
+      <div class="hero-badge">📄 Instant PDF Generator</div>
+      <h1 class="hero-title">Convert Images to Multi-Page PDF</h1>
+      <p class="hero-subtitle">Combine multiple JPGs, PNGs, and scans into a single high-quality PDF document directly in your browser.</p>
+    </div>
+
+    <div class="tool-card">
+      <div id="dropzone" class="dropzone-container">
+        <input type="file" id="fileInput" class="hidden" accept="image/*" multiple>
+        <div class="drop-icon-circle">
+          <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/>
+            <polyline points="14 2 14 8 20 8"/>
+            <line x1="16" y1="13" x2="8" y2="13"/>
+            <line x1="16" y1="17" x2="8" y2="17"/>
+            <polyline points="10 9 9 9 8 9"/>
+          </svg>
+        </div>
+        <h2 class="dropzone-title">Drop images to build PDF</h2>
+        <p class="dropzone-sub">Select multiple photos • Compiles instantly with zero server upload</p>
+      </div>
+
+      <div id="resultSection" class="result-section hidden">
+        <div>
+          <div class="preview-box-wrapper" style="background:#161926; flex-direction:column; gap:12px; padding:32px;">
+            <svg width="64" height="64" viewBox="0 0 24 24" fill="none" stroke="#FFFFFF" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/>
+              <polyline points="14 2 14 8 20 8"/>
+              <line x1="12" y1="18" x2="12" y2="12"/>
+              <line x1="9" y1="15" x2="15" y2="15"/>
+            </svg>
+            <span style="font-size:16px; font-weight:700; color:#FFFFFF;">PDF Document Ready</span>
+          </div>
+
+          <div class="stats-bar">
+            <span>Total Input Size: <strong id="origSizeText">0 KB</strong></span>
+            <span>PDF Size: <strong id="outputSizeText">0 KB</strong></span>
+          </div>
+
+          <div style="display:flex; flex-direction:column; gap:8px; margin-top:16px;">
+            <button id="btnDownload" class="btn-primary">Download Compiled PDF</button>
+            <button id="btnReset" class="btn-secondary">🔄 Compile Another Document</button>
+          </div>
+        </div>
+
+        <div class="settings-panel">
+          <div class="control-group">
+            <label class="control-label">Page Orientation</label>
+            <div class="pills-grid">
+              <button class="pill-btn active">Auto Match</button>
+              <button class="pill-btn">Portrait</button>
+              <button class="pill-btn">Landscape</button>
+            </div>
+          </div>
+
+          <div class="control-group">
+            <label class="control-label">Compression Level</label>
+            <div class="pills-grid">
+              <button class="pill-btn active">High Quality (92%)</button>
+              <button class="pill-btn">Compact (75%)</button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="ad-slot-native">
+      <span>Advertisement Placeholder</span>
+    </div>
+
+    <section class="seo-section">
+      <h2 class="seo-title">PDF Creator FAQs</h2>
+      <div class="faq-list">
+        <div class="faq-item">
+          <h3 class="faq-q">Is there a limit on how many photos I can add to a PDF?</h3>
+          <p class="faq-a">No! Because compilation runs on your computer's browser, you can combine dozens of high-res photos into one PDF without hitting cloud paywalls.</p>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <div class="footer-links">
+      <a href="index.html" class="footer-link">Home</a>
+      <a href="convert.html" class="footer-link">Convert</a>
+      <a href="compress.html" class="footer-link">Compress</a>
+      <a href="resize.html" class="footer-link">Resize</a>
+      <a href="crop.html" class="footer-link">Crop</a>
+      <a href="pdf.html" class="footer-link">PDF Tools</a>
+      <a href="privacy.html" class="footer-link">Privacy Policy</a>
+    </div>
+    <p>© 2026 ImgDrop by Vinland Studio.</p>
+  </footer>
+
+  <script type="module">
+    import { ImgDropApp } from './js/app.js';
+    new ImgDropApp({ defaultMode: 'pdf' });
+  </script>
+</body>
+</html>

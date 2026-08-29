@@ -1,0 +1,85 @@
+﻿/* Interactive Visual Cropper Styles */
+.imgdrop-cropper-wrapper {
+  position: relative;
+  margin: 0 auto;
+  overflow: hidden;
+  user-select: none;
+  background: #090A0F;
+  border-radius: 12px;
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.4);
+}
+
+.imgdrop-cropper-img {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  display: block;
+  pointer-events: none;
+  transition: transform 0.1s ease-out;
+}
+
+.imgdrop-crop-mask {
+  position: absolute;
+  background: rgba(0, 0, 0, 0.65);
+  backdrop-filter: blur(1px);
+  pointer-events: none;
+  z-index: 5;
+}
+
+.imgdrop-crop-box {
+  position: absolute;
+  top: 0;
+  left: 0;
+  border: 1.5px solid #FFFFFF;
+  box-shadow: 0 0 0 1px rgba(0, 0, 0, 0.6), 0 4px 16px rgba(0, 0, 0, 0.4);
+  cursor: move;
+  z-index: 10;
+  box-sizing: border-box;
+}
+
+.imgdrop-crop-grid {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+}
+
+.imgdrop-crop-grid .gh {
+  position: absolute;
+  left: 0;
+  width: 100%;
+  height: 1px;
+  background: rgba(255, 255, 255, 0.3);
+}
+.imgdrop-crop-grid .gh:nth-child(1) { top: 33.33%; }
+.imgdrop-crop-grid .gh:nth-child(2) { top: 66.66%; }
+
+.imgdrop-crop-grid .gv {
+  position: absolute;
+  top: 0;
+  height: 100%;
+  width: 1px;
+  background: rgba(255, 255, 255, 0.3);
+}
+.imgdrop-crop-grid .gv:nth-child(3) { left: 33.33%; }
+.imgdrop-crop-grid .gv:nth-child(4) { left: 66.66%; }
+
+.imgdrop-crop-handle {
+  position: absolute;
+  width: 10px;
+  height: 10px;
+  background: #FFFFFF;
+  border: 1.5px solid #090A0F;
+  border-radius: 50%;
+  box-shadow: 0 2px 6px rgba(0,0,0,0.5);
+  z-index: 15;
+}
+
+.handle-nw { top: -5px; left: -5px; cursor: nwse-resize; }
+.handle-ne { top: -5px; right: -5px; cursor: nesw-resize; }
+.handle-se { bottom: -5px; right: -5px; cursor: nwse-resize; }
+.handle-sw { bottom: -5px; left: -5px; cursor: nesw-resize; }
+
+.handle-n { top: -5px; left: calc(50% - 5px); cursor: ns-resize; border-radius: 2px; width: 14px; }
+.handle-s { bottom: -5px; left: calc(50% - 5px); cursor: ns-resize; border-radius: 2px; width: 14px; }
+.handle-e { right: -5px; top: calc(50% - 5px); cursor: ew-resize; border-radius: 2px; height: 14px; }
+.handle-w { left: -5px; top: calc(50% - 5px); cursor: ew-resize; border-radius: 2px; height: 14px; }

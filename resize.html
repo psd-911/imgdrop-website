@@ -1,0 +1,137 @@
+﻿<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Resize Images Online - Exact Pixels & Scale | ImgDrop</title>
+  <meta name="description" content="Free online image resizer. Change image dimensions in pixels, scale down, or lock aspect ratios for social media and web design. Instant & private.">
+  <link rel="icon" type="image/png" href="assets/icon48.png">
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+  <header class="site-nav">
+    <a href="index.html" class="brand-wrapper">
+      <img src="assets/icon48.png" alt="ImgDrop Logo" class="brand-icon">
+      <span class="brand-name">ImgDrop</span>
+      <span class="brand-tag">RESIZE</span>
+    </a>
+
+    <nav>
+      <ul class="nav-links">
+        <li><a href="index.html" class="nav-link">All Tools</a></li>
+        <li><a href="convert.html" class="nav-link">Convert</a></li>
+        <li><a href="compress.html" class="nav-link">Compress</a></li>
+        <li><a href="resize.html" class="nav-link active">Resize</a></li>
+        <li><a href="crop.html" class="nav-link">Crop</a></li>
+        <li><a href="pdf.html" class="nav-link">PDF Tools</a></li>
+      </ul>
+    </nav>
+
+    <div class="nav-actions">
+      <button id="themeToggleBtn" class="theme-toggle-btn">☀️ Light</button>
+      <a href="https://chromewebstore.google.com/detail/imgdrop-image-converter-c/gbpkoodllffbiaamdiciellkghlmgcdj" target="_blank" class="chrome-install-btn">
+        Add to Chrome (Free)
+      </a>
+    </div>
+  </header>
+
+  <main class="main-content">
+    <div class="ad-slot-leaderboard">
+      <span>Advertisement Placeholder (728 × 90)</span>
+    </div>
+
+    <div class="hero-header">
+      <div class="hero-badge">📐 High-Precision Image Resizing</div>
+      <h1 class="hero-title">Resize Images by Width, Height & Scale</h1>
+      <p class="hero-subtitle">Scale pictures to exact pixel dimensions with bilinear interpolation and aspect ratio locking.</p>
+    </div>
+
+    <div class="tool-card">
+      <div id="dropzone" class="dropzone-container">
+        <input type="file" id="fileInput" class="hidden" accept="image/*" multiple>
+        <div class="drop-icon-circle">
+          <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+            <polyline points="15 3 21 3 21 9"/>
+            <polyline points="9 21 3 21 3 15"/>
+            <line x1="21" y1="3" x2="14" y2="10"/>
+            <line x1="3" y1="21" x2="10" y2="14"/>
+          </svg>
+        </div>
+        <h2 class="dropzone-title">Drop images to resize</h2>
+        <p class="dropzone-sub">Click to browse or drop photos</p>
+      </div>
+
+      <div id="resultSection" class="result-section hidden">
+        <div>
+          <div class="preview-box-wrapper">
+            <img id="previewImg" src="" alt="Resized Preview">
+          </div>
+          <div class="stats-bar">
+            <span>Dimensions: <strong id="dimText">0 × 0 px</strong></span>
+            <span>Size: <strong id="outputSizeText">0 KB</strong></span>
+          </div>
+          <div style="display:flex; flex-direction:column; gap:8px; margin-top:16px;">
+            <button id="btnDownload" class="btn-primary">Download Resized Image</button>
+            <button id="btnReset" class="btn-secondary">🔄 Resize Another Image</button>
+          </div>
+        </div>
+
+        <div class="settings-panel">
+          <div class="control-group">
+            <label class="control-label">Exact Output Dimensions (Pixels)</label>
+            <div style="display:grid; grid-template-columns: 1fr 1fr; gap:8px;">
+              <input type="number" id="resizeWidth" placeholder="Width (px)" class="input-field">
+              <input type="number" id="resizeHeight" placeholder="Height (px)" class="input-field">
+            </div>
+            <label style="font-size:12px; color:var(--text-secondary); margin-top:6px; display:flex; align-items:center; gap:6px; cursor:pointer;">
+              <input type="checkbox" id="lockAspect" checked> Lock Aspect Ratio
+            </label>
+          </div>
+
+          <div class="control-group">
+            <label class="control-label">Export Format</label>
+            <div class="pills-grid">
+              <button class="pill-btn format-pill active" data-format="image/jpeg">JPG</button>
+              <button class="pill-btn format-pill" data-format="image/png">PNG</button>
+              <button class="pill-btn format-pill" data-format="image/webp">WebP</button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="ad-slot-native">
+      <span>Advertisement Placeholder</span>
+    </div>
+
+    <section class="seo-section">
+      <h2 class="seo-title">Image Resizing FAQs</h2>
+      <div class="faq-list">
+        <div class="faq-item">
+          <h3 class="faq-q">What does Lock Aspect Ratio do?</h3>
+          <p class="faq-a">Locking aspect ratio ensures that when you adjust width, height is automatically calculated so your photo never looks stretched or squished.</p>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <div class="footer-links">
+      <a href="index.html" class="footer-link">Home</a>
+      <a href="convert.html" class="footer-link">Convert</a>
+      <a href="compress.html" class="footer-link">Compress</a>
+      <a href="resize.html" class="footer-link">Resize</a>
+      <a href="crop.html" class="footer-link">Crop</a>
+      <a href="pdf.html" class="footer-link">PDF Tools</a>
+      <a href="privacy.html" class="footer-link">Privacy Policy</a>
+    </div>
+    <p>© 2026 ImgDrop by Vinland Studio.</p>
+  </footer>
+
+  <script type="module">
+    import { ImgDropApp } from './js/app.js';
+    new ImgDropApp({ defaultMode: 'resize', defaultFormat: 'image/jpeg' });
+  </script>
+</body>
+</html>
