@@ -1,6 +1,19 @@
 ﻿{
   "cleanUrls": true,
   "trailingSlash": false,
+  "rewrites": [
+    { "source": "/png-to-jpg", "destination": "/png-to-jpg.html" },
+    { "source": "/webp-to-jpg", "destination": "/webp-to-jpg.html" },
+    { "source": "/jpg-to-png", "destination": "/jpg-to-png.html" },
+    { "source": "/image-compressor", "destination": "/compress.html" },
+    { "source": "/compress", "destination": "/compress.html" },
+    { "source": "/image-resizer", "destination": "/resize.html" },
+    { "source": "/resize", "destination": "/resize.html" },
+    { "source": "/image-cropper", "destination": "/crop.html" },
+    { "source": "/crop", "destination": "/crop.html" },
+    { "source": "/jpg-to-pdf", "destination": "/pdf.html" },
+    { "source": "/pdf", "destination": "/pdf.html" }
+  ],
   "headers": [
     {
       "source": "/(.*)",

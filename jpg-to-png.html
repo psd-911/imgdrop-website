@@ -1,0 +1,175 @@
+﻿<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>JPG to PNG Converter - Convert JPG to PNG Online Free | ImgDrop</title>
+  <meta name="description" content="Convert JPG to PNG online free in 1 click. Lossless high-quality PNG export, 100% private in-browser conversion with zero cloud upload.">
+  <link rel="canonical" href="https://imgdrop.me/jpg-to-png.html">
+  <link rel="icon" type="image/png" href="assets/icon48.png">
+
+  <!-- Open Graph -->
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://imgdrop.me/jpg-to-png.html">
+  <meta property="og:title" content="JPG to PNG Converter - 100% Free & Private | ImgDrop">
+  <meta property="og:description" content="Convert JPG to PNG online with lossless output and zero cloud upload. Fast, safe, in-browser tool.">
+  <meta property="og:image" content="https://imgdrop.me/assets/icon128.png">
+
+  <!-- Twitter -->
+  <meta name="twitter:card" content="summary">
+  <meta name="twitter:title" content="JPG to PNG Converter - 100% Free & Private | ImgDrop">
+  <meta name="twitter:description" content="Convert JPG to PNG online with lossless output and zero cloud upload. Fast, safe, in-browser tool.">
+  <meta name="twitter:image" content="https://imgdrop.me/assets/icon128.png">
+
+  <!-- Structured Data -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "SoftwareApplication",
+    "name": "ImgDrop JPG to PNG Converter",
+    "operatingSystem": "All",
+    "applicationCategory": "MultimediaApplication",
+    "offers": {
+      "@type": "Offer",
+      "price": "0",
+      "priceCurrency": "USD"
+    },
+    "description": "Free 100% private online tool to convert JPG images to lossless PNG format directly in your browser."
+  }
+  </script>
+
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+  <!-- Navigation Bar -->
+  <header class="site-nav">
+    <a href="index.html" class="brand-wrapper">
+      <img src="assets/icon48.png" alt="ImgDrop Logo" class="brand-icon">
+      <span class="brand-name">ImgDrop</span>
+      <span class="brand-tag">JPG TO PNG</span>
+    </a>
+
+    <nav>
+      <ul class="nav-links">
+        <li><a href="index.html" class="nav-link">All Tools</a></li>
+        <li><a href="jpg-to-png.html" class="nav-link active">JPG to PNG</a></li>
+        <li><a href="png-to-jpg.html" class="nav-link">PNG to JPG</a></li>
+        <li><a href="webp-to-jpg.html" class="nav-link">WebP to JPG</a></li>
+        <li><a href="compress.html" class="nav-link">Compressor</a></li>
+        <li><a href="resize.html" class="nav-link">Resizer</a></li>
+        <li><a href="crop.html" class="nav-link">Cropper</a></li>
+        <li><a href="pdf.html" class="nav-link">PDF Tools</a></li>
+      </ul>
+    </nav>
+
+    <div class="nav-actions">
+      <button id="themeToggleBtn" class="theme-toggle-btn">☀️ Light</button>
+      <a href="https://chromewebstore.google.com/detail/imgdrop-image-converter-c/gbpkoodllffbiaamdiciellkghlmgcdj" target="_blank" class="chrome-install-btn">
+        Add to Chrome (Free)
+      </a>
+    </div>
+  </header>
+
+  <main class="main-content">
+    <div class="ad-slot-leaderboard">
+      <span>Advertisement Placeholder (728 × 90)</span>
+    </div>
+
+    <div class="hero-header">
+      <div class="hero-badge">💎 Lossless PNG Export</div>
+      <h1 class="hero-title">Convert JPG to PNG Online</h1>
+      <p class="hero-subtitle">Export your JPG photos into crisp, uncompressed PNG format for design, web graphics, and editing.</p>
+    </div>
+
+    <div class="tool-card">
+      <div id="dropzone" class="dropzone-container">
+        <input type="file" id="fileInput" class="hidden" accept="image/jpeg,image/jpg,image/*" multiple>
+        <div class="drop-icon-circle">
+          <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+            <polyline points="17 1 21 5 17 9"/>
+            <path d="M3 11V9a4 4 0 0 1 4-4h14"/>
+            <polyline points="7 23 3 19 7 15"/>
+            <path d="M21 13v2a4 4 0 0 1-4 4H3"/>
+          </svg>
+        </div>
+        <h2 class="dropzone-title">Drop JPG image(s) to convert to PNG</h2>
+        <p class="dropzone-sub">Drop JPG/JPEG files or click to browse • Unlimited batch processing</p>
+      </div>
+
+      <div id="resultSection" class="result-section hidden">
+        <div>
+          <div class="preview-box-wrapper">
+            <img id="previewImg" src="" alt="Converted PNG Preview">
+          </div>
+          <div class="stats-bar">
+            <span>Original JPG: <strong id="origSizeText">0 KB</strong></span>
+            <span>Output PNG: <strong id="outputSizeText">0 KB</strong></span>
+          </div>
+          <div style="display:flex; flex-direction:column; gap:8px; margin-top:16px;">
+            <button id="btnDownload" class="btn-primary">Download PNG Image</button>
+            <button id="btnReset" class="btn-secondary">🔄 Convert Another JPG</button>
+          </div>
+        </div>
+
+        <div class="settings-panel">
+          <div class="control-group">
+            <label class="control-label">Target Format</label>
+            <div class="pills-grid">
+              <button class="pill-btn format-pill active" data-format="image/png">PNG (Lossless)</button>
+              <button class="pill-btn format-pill" data-format="image/webp">WebP</button>
+            </div>
+          </div>
+
+          <div class="control-group">
+            <label class="control-label">Other Popular Conversions</label>
+            <div style="display:flex; gap:8px; flex-wrap:wrap;">
+              <a href="png-to-jpg.html" style="font-size:12px; color:var(--text-secondary); text-decoration:underline;">Convert PNG to JPG ➔</a>
+              <a href="webp-to-jpg.html" style="font-size:12px; color:var(--text-secondary); text-decoration:underline;">Convert WebP to JPG ➔</a>
+              <a href="compress.html" style="font-size:12px; color:var(--text-secondary); text-decoration:underline;">Compress Images ➔</a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="ad-slot-native">
+      <span>Advertisement Placeholder</span>
+    </div>
+
+    <section class="seo-section">
+      <h2 class="seo-title">JPG to PNG Conversion FAQs</h2>
+      <div class="faq-list">
+        <div class="faq-item">
+          <h3 class="faq-q">Why convert JPG to PNG?</h3>
+          <p class="faq-a">PNG is a lossless format, which prevents generational quality loss if you plan to edit the image repeatedly in tools like Figma or Photoshop.</p>
+        </div>
+        <div class="faq-item">
+          <h3 class="faq-q">Does converting JPG to PNG make the background transparent?</h3>
+          <p class="faq-a">Converting a JPG to PNG saves the image in the PNG container, but does not automatically remove backgrounds. For transparent backgrounds, use an image editor or crop tool.</p>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <div class="footer-links">
+      <a href="index.html" class="footer-link">Home</a>
+      <a href="jpg-to-png.html" class="footer-link">JPG to PNG</a>
+      <a href="png-to-jpg.html" class="footer-link">PNG to JPG</a>
+      <a href="webp-to-jpg.html" class="footer-link">WebP to JPG</a>
+      <a href="compress.html" class="footer-link">Image Compressor</a>
+      <a href="resize.html" class="footer-link">Image Resizer</a>
+      <a href="crop.html" class="footer-link">Image Cropper</a>
+      <a href="pdf.html" class="footer-link">JPG to PDF</a>
+      <a href="privacy.html" class="footer-link">Privacy Policy</a>
+    </div>
+    <p>© 2026 ImgDrop by Vinland Studio. 100% Client-Side In-Browser Image Utilities.</p>
+  </footer>
+
+  <script type="module">
+    import { ImgDropApp } from './js/app.js';
+    new ImgDropApp({ defaultMode: 'convert', defaultFormat: 'image/png' });
+  </script>
+</body>
+</html>

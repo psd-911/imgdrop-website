@@ -1,0 +1,190 @@
+﻿<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>PNG to JPG Converter - Convert PNG to JPG Online Free | ImgDrop</title>
+  <meta name="description" content="Convert PNG to JPG online in seconds for free. 100% private, instant in-browser batch converter with transparent background white-fill and zero quality loss.">
+  <link rel="canonical" href="https://imgdrop.me/png-to-jpg.html">
+  <link rel="icon" type="image/png" href="assets/icon48.png">
+
+  <!-- Open Graph -->
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://imgdrop.me/png-to-jpg.html">
+  <meta property="og:title" content="PNG to JPG Converter - 100% Free & Private | ImgDrop">
+  <meta property="og:description" content="Convert PNG to JPG online with zero upload lag. 100% private in-browser image converter.">
+  <meta property="og:image" content="https://imgdrop.me/assets/icon128.png">
+
+  <!-- Twitter -->
+  <meta name="twitter:card" content="summary">
+  <meta name="twitter:title" content="PNG to JPG Converter - 100% Free & Private | ImgDrop">
+  <meta name="twitter:description" content="Convert PNG to JPG online with zero upload lag. 100% private in-browser image converter.">
+  <meta name="twitter:image" content="https://imgdrop.me/assets/icon128.png">
+
+  <!-- Structured Data for Google -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "SoftwareApplication",
+    "name": "ImgDrop PNG to JPG Converter",
+    "operatingSystem": "All",
+    "applicationCategory": "MultimediaApplication",
+    "offers": {
+      "@type": "Offer",
+      "price": "0",
+      "priceCurrency": "USD"
+    },
+    "description": "Free 100% private online tool to convert PNG images to JPG format directly in your browser without uploading to external servers."
+  }
+  </script>
+
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+  <!-- Navigation Bar -->
+  <header class="site-nav">
+    <a href="index.html" class="brand-wrapper">
+      <img src="assets/icon48.png" alt="ImgDrop Logo" class="brand-icon">
+      <span class="brand-name">ImgDrop</span>
+      <span class="brand-tag">PNG TO JPG</span>
+    </a>
+
+    <nav>
+      <ul class="nav-links">
+        <li><a href="index.html" class="nav-link">All Tools</a></li>
+        <li><a href="png-to-jpg.html" class="nav-link active">PNG to JPG</a></li>
+        <li><a href="webp-to-jpg.html" class="nav-link">WebP to JPG</a></li>
+        <li><a href="jpg-to-png.html" class="nav-link">JPG to PNG</a></li>
+        <li><a href="compress.html" class="nav-link">Compressor</a></li>
+        <li><a href="resize.html" class="nav-link">Resizer</a></li>
+        <li><a href="crop.html" class="nav-link">Cropper</a></li>
+        <li><a href="pdf.html" class="nav-link">PDF Tools</a></li>
+      </ul>
+    </nav>
+
+    <div class="nav-actions">
+      <button id="themeToggleBtn" class="theme-toggle-btn">☀️ Light</button>
+      <a href="https://chromewebstore.google.com/detail/imgdrop-image-converter-c/gbpkoodllffbiaamdiciellkghlmgcdj" target="_blank" class="chrome-install-btn">
+        Add to Chrome (Free)
+      </a>
+    </div>
+  </header>
+
+  <main class="main-content">
+    <div class="ad-slot-leaderboard">
+      <span>Advertisement Placeholder (728 × 90)</span>
+    </div>
+
+    <div class="hero-header">
+      <div class="hero-badge">⚡ Instant 1-Click Conversion</div>
+      <h1 class="hero-title">Convert PNG to JPG Online</h1>
+      <p class="hero-subtitle">Fast, high-fidelity PNG to JPG conversion with clean white background handling for transparent images. 100% private.</p>
+    </div>
+
+    <div class="tool-card">
+      <div id="dropzone" class="dropzone-container">
+        <input type="file" id="fileInput" class="hidden" accept="image/png,image/*" multiple>
+        <div class="drop-icon-circle">
+          <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+            <polyline points="17 1 21 5 17 9"/>
+            <path d="M3 11V9a4 4 0 0 1 4-4h14"/>
+            <polyline points="7 23 3 19 7 15"/>
+            <path d="M21 13v2a4 4 0 0 1-4 4H3"/>
+          </svg>
+        </div>
+        <h2 class="dropzone-title">Drop PNG image(s) to convert to JPG</h2>
+        <p class="dropzone-sub">Drop PNG files or click to browse • Unlimited batch processing</p>
+      </div>
+
+      <div id="resultSection" class="result-section hidden">
+        <div>
+          <div class="preview-box-wrapper">
+            <img id="previewImg" src="" alt="Converted JPG Preview">
+          </div>
+          <div class="stats-bar">
+            <span>Original PNG: <strong id="origSizeText">0 KB</strong></span>
+            <span id="savingsBadge" class="savings-pill">-0% Savings</span>
+            <span>Output JPG: <strong id="outputSizeText">0 KB</strong></span>
+          </div>
+          <div style="display:flex; flex-direction:column; gap:8px; margin-top:16px;">
+            <button id="btnDownload" class="btn-primary">Download JPG Image</button>
+            <button id="btnReset" class="btn-secondary">🔄 Convert Another PNG</button>
+          </div>
+        </div>
+
+        <div class="settings-panel">
+          <div class="control-group">
+            <label class="control-label">Target Format</label>
+            <div class="pills-grid">
+              <button class="pill-btn format-pill active" data-format="image/jpeg">JPG (Selected)</button>
+              <button class="pill-btn format-pill" data-format="image/webp">WebP</button>
+              <button class="pill-btn format-pill" data-format="image/avif">AVIF</button>
+            </div>
+          </div>
+
+          <div class="control-group">
+            <div style="display:flex; justify-content:space-between; align-items:center;">
+              <label class="control-label">JPG Export Quality</label>
+              <span id="qualityValText" style="font-size:12px; font-weight:700;">90%</span>
+            </div>
+            <input type="range" id="qualitySlider" min="10" max="100" value="90" style="width:100%; cursor:pointer;">
+            <span style="font-size:11.5px; color:var(--text-secondary);">Higher quality preserves fine detail; lower quality creates smaller files.</span>
+          </div>
+
+          <div class="control-group">
+            <label class="control-label">Quick Format Switch</label>
+            <div style="display:flex; gap:8px; flex-wrap:wrap;">
+              <a href="webp-to-jpg.html" style="font-size:12px; color:var(--text-secondary); text-decoration:underline;">Convert WebP to JPG ➔</a>
+              <a href="jpg-to-png.html" style="font-size:12px; color:var(--text-secondary); text-decoration:underline;">Convert JPG to PNG ➔</a>
+              <a href="compress.html" style="font-size:12px; color:var(--text-secondary); text-decoration:underline;">Compress Image ➔</a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="ad-slot-native">
+      <span>Advertisement Placeholder</span>
+    </div>
+
+    <section class="seo-section">
+      <h2 class="seo-title">PNG to JPG Conversion FAQs</h2>
+      <div class="faq-list">
+        <div class="faq-item">
+          <h3 class="faq-q">Why convert PNG to JPG?</h3>
+          <p class="faq-a">PNG files use lossless compression and are often 5x to 10x larger than JPGs. Converting PNG to JPG drastically reduces file size, making images load faster on websites, upload easily to forms, and save disk space.</p>
+        </div>
+        <div class="faq-item">
+          <h3 class="faq-q">What happens to transparent backgrounds in PNG?</h3>
+          <p class="faq-a">Because the standard JPEG format does not support transparency, ImgDrop cleanly fills transparent areas with a clean, crisp solid white background.</p>
+        </div>
+        <div class="faq-item">
+          <h3 class="faq-q">Is my data safe when converting PNG to JPG?</h3>
+          <p class="faq-a">Yes, 100%! All conversions run on your device's browser memory via HTML5 Canvas. Your photos are never sent to our servers.</p>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <div class="footer-links">
+      <a href="index.html" class="footer-link">Home</a>
+      <a href="png-to-jpg.html" class="footer-link">PNG to JPG</a>
+      <a href="webp-to-jpg.html" class="footer-link">WebP to JPG</a>
+      <a href="jpg-to-png.html" class="footer-link">JPG to PNG</a>
+      <a href="compress.html" class="footer-link">Image Compressor</a>
+      <a href="resize.html" class="footer-link">Image Resizer</a>
+      <a href="crop.html" class="footer-link">Image Cropper</a>
+      <a href="pdf.html" class="footer-link">JPG to PDF</a>
+      <a href="privacy.html" class="footer-link">Privacy Policy</a>
+    </div>
+    <p>© 2026 ImgDrop by Vinland Studio. 100% Client-Side In-Browser Image Utilities.</p>
+  </footer>
+
+  <script type="module">
+    import { ImgDropApp } from './js/app.js';
+    new ImgDropApp({ defaultMode: 'convert', defaultFormat: 'image/jpeg' });
+  </script>
+</body>
+</html>

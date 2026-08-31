@@ -1,0 +1,182 @@
+﻿<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>WebP to JPG Converter - Convert WebP to JPG Online Free | ImgDrop</title>
+  <meta name="description" content="Convert WebP to JPG online in 1 click for free. Fast, 100% private in-browser WebP converter. No upload lag, no quality loss, compatible with all photo viewers.">
+  <link rel="canonical" href="https://imgdrop.me/webp-to-jpg.html">
+  <link rel="icon" type="image/png" href="assets/icon48.png">
+
+  <!-- Open Graph -->
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://imgdrop.me/webp-to-jpg.html">
+  <meta property="og:title" content="WebP to JPG Converter - 100% Free & Private | ImgDrop">
+  <meta property="og:description" content="Convert WebP to JPG online instantly with zero cloud upload. Works 100% in your browser.">
+  <meta property="og:image" content="https://imgdrop.me/assets/icon128.png">
+
+  <!-- Twitter -->
+  <meta name="twitter:card" content="summary">
+  <meta name="twitter:title" content="WebP to JPG Converter - 100% Free & Private | ImgDrop">
+  <meta name="twitter:description" content="Convert WebP to JPG online instantly with zero cloud upload. Works 100% in your browser.">
+  <meta name="twitter:image" content="https://imgdrop.me/assets/icon128.png">
+
+  <!-- Structured Data -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "SoftwareApplication",
+    "name": "ImgDrop WebP to JPG Converter",
+    "operatingSystem": "All",
+    "applicationCategory": "MultimediaApplication",
+    "offers": {
+      "@type": "Offer",
+      "price": "0",
+      "priceCurrency": "USD"
+    },
+    "description": "Free 100% private online tool to convert Google WebP images to standard JPG format directly in your browser."
+  }
+  </script>
+
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+  <!-- Navigation Bar -->
+  <header class="site-nav">
+    <a href="index.html" class="brand-wrapper">
+      <img src="assets/icon48.png" alt="ImgDrop Logo" class="brand-icon">
+      <span class="brand-name">ImgDrop</span>
+      <span class="brand-tag">WEBP TO JPG</span>
+    </a>
+
+    <nav>
+      <ul class="nav-links">
+        <li><a href="index.html" class="nav-link">All Tools</a></li>
+        <li><a href="webp-to-jpg.html" class="nav-link active">WebP to JPG</a></li>
+        <li><a href="png-to-jpg.html" class="nav-link">PNG to JPG</a></li>
+        <li><a href="jpg-to-png.html" class="nav-link">JPG to PNG</a></li>
+        <li><a href="compress.html" class="nav-link">Compressor</a></li>
+        <li><a href="resize.html" class="nav-link">Resizer</a></li>
+        <li><a href="crop.html" class="nav-link">Cropper</a></li>
+        <li><a href="pdf.html" class="nav-link">PDF Tools</a></li>
+      </ul>
+    </nav>
+
+    <div class="nav-actions">
+      <button id="themeToggleBtn" class="theme-toggle-btn">☀️ Light</button>
+      <a href="https://chromewebstore.google.com/detail/imgdrop-image-converter-c/gbpkoodllffbiaamdiciellkghlmgcdj" target="_blank" class="chrome-install-btn">
+        Add to Chrome (Free)
+      </a>
+    </div>
+  </header>
+
+  <main class="main-content">
+    <div class="ad-slot-leaderboard">
+      <span>Advertisement Placeholder (728 × 90)</span>
+    </div>
+
+    <div class="hero-header">
+      <div class="hero-badge">⚡ Instant WebP Conversion</div>
+      <h1 class="hero-title">Convert WebP to JPG Online</h1>
+      <p class="hero-subtitle">Make downloaded WebP images universally compatible with Photoshop, Windows, Mac, and mobile galleries.</p>
+    </div>
+
+    <div class="tool-card">
+      <div id="dropzone" class="dropzone-container">
+        <input type="file" id="fileInput" class="hidden" accept="image/webp,image/*" multiple>
+        <div class="drop-icon-circle">
+          <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+            <polyline points="17 1 21 5 17 9"/>
+            <path d="M3 11V9a4 4 0 0 1 4-4h14"/>
+            <polyline points="7 23 3 19 7 15"/>
+            <path d="M21 13v2a4 4 0 0 1-4 4H3"/>
+          </svg>
+        </div>
+        <h2 class="dropzone-title">Drop WebP image(s) to convert to JPG</h2>
+        <p class="dropzone-sub">Drop files or click to browse • 100% private, runs on your CPU</p>
+      </div>
+
+      <div id="resultSection" class="result-section hidden">
+        <div>
+          <div class="preview-box-wrapper">
+            <img id="previewImg" src="" alt="Converted JPG Preview">
+          </div>
+          <div class="stats-bar">
+            <span>Original WebP: <strong id="origSizeText">0 KB</strong></span>
+            <span>Output JPG: <strong id="outputSizeText">0 KB</strong></span>
+          </div>
+          <div style="display:flex; flex-direction:column; gap:8px; margin-top:16px;">
+            <button id="btnDownload" class="btn-primary">Download JPG Image</button>
+            <button id="btnReset" class="btn-secondary">🔄 Convert Another WebP</button>
+          </div>
+        </div>
+
+        <div class="settings-panel">
+          <div class="control-group">
+            <label class="control-label">Target Format</label>
+            <div class="pills-grid">
+              <button class="pill-btn format-pill active" data-format="image/jpeg">JPG (Selected)</button>
+              <button class="pill-btn format-pill" data-format="image/png">PNG</button>
+            </div>
+          </div>
+
+          <div class="control-group">
+            <div style="display:flex; justify-content:space-between; align-items:center;">
+              <label class="control-label">Quality Level</label>
+              <span id="qualityValText" style="font-size:12px; font-weight:700;">90%</span>
+            </div>
+            <input type="range" id="qualitySlider" min="10" max="100" value="90" style="width:100%; cursor:pointer;">
+          </div>
+
+          <div class="control-group">
+            <label class="control-label">Other Tools</label>
+            <div style="display:flex; gap:8px; flex-wrap:wrap;">
+              <a href="png-to-jpg.html" style="font-size:12px; color:var(--text-secondary); text-decoration:underline;">Convert PNG to JPG ➔</a>
+              <a href="compress.html" style="font-size:12px; color:var(--text-secondary); text-decoration:underline;">Compress to 50KB ➔</a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="ad-slot-native">
+      <span>Advertisement Placeholder</span>
+    </div>
+
+    <section class="seo-section">
+      <h2 class="seo-title">Why Convert WebP to JPG?</h2>
+      <div class="faq-list">
+        <div class="faq-item">
+          <h3 class="faq-q">Why do so many images download as .webp?</h3>
+          <p class="faq-a">Modern websites use WebP because it compresses well for faster web loading. However, many desktop apps, older software, and submission portals don't recognize WebP files. Converting them to JPG makes them universally usable.</p>
+        </div>
+        <div class="faq-item">
+          <h3 class="faq-q">Is there any quality loss when converting WebP to JPG?</h3>
+          <p class="faq-a">ImgDrop re-renders the WebP pixels at high resolution onto an HTML5 canvas before encoding as JPEG with quality up to 100%, preserving crispness with no perceptible artifacts.</p>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <div class="footer-links">
+      <a href="index.html" class="footer-link">Home</a>
+      <a href="webp-to-jpg.html" class="footer-link">WebP to JPG</a>
+      <a href="png-to-jpg.html" class="footer-link">PNG to JPG</a>
+      <a href="jpg-to-png.html" class="footer-link">JPG to PNG</a>
+      <a href="compress.html" class="footer-link">Image Compressor</a>
+      <a href="resize.html" class="footer-link">Image Resizer</a>
+      <a href="crop.html" class="footer-link">Image Cropper</a>
+      <a href="pdf.html" class="footer-link">JPG to PDF</a>
+      <a href="privacy.html" class="footer-link">Privacy Policy</a>
+    </div>
+    <p>© 2026 ImgDrop by Vinland Studio. 100% Client-Side In-Browser Image Utilities.</p>
+  </footer>
+
+  <script type="module">
+    import { ImgDropApp } from './js/app.js';
+    new ImgDropApp({ defaultMode: 'convert', defaultFormat: 'image/jpeg' });
+  </script>
+</body>
+</html>
