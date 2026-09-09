@@ -1,0 +1,159 @@
+﻿<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Contact ImgDrop - Get in Touch</title>
+  <meta name="description" content="Contact ImgDrop for support, feedback, bug reports, or partnership inquiries. We respond to every message within 24 hours.">
+  <link rel="icon" type="image/png" href="assets/icon48.png">
+  <link rel="stylesheet" href="css/style.css">
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "ContactPage",
+    "name": "Contact ImgDrop",
+    "url": "https://imgdrop.me/contact.html",
+    "description": "Contact ImgDrop for support, feedback, or inquiries.",
+    "mainEntity": {
+      "@type": "Organization",
+      "name": "Vinland Studio",
+      "email": "redyforthefourthphase@gmail.com",
+      "url": "https://imgdrop.me"
+    }
+  }
+  </script>
+  <style>
+    .contact-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 16px;
+      margin-top: 24px;
+    }
+    @media (max-width: 600px) {
+      .contact-grid { grid-template-columns: 1fr; }
+    }
+    .contact-card {
+      background: var(--surface-hover);
+      border: 1px solid var(--border-glass);
+      border-radius: var(--radius-sm);
+      padding: 20px;
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+    }
+    .contact-card-icon { font-size: 28px; }
+    .contact-card-title { font-size: 15px; font-weight: 700; color: var(--text-primary); }
+    .contact-card-desc { font-size: 13px; color: var(--text-secondary); line-height: 1.5; }
+    .contact-card a { color: var(--text-primary); text-decoration: underline; font-weight: 600; }
+    .faq-mini { display: flex; flex-direction: column; gap: 12px; }
+    .faq-mini-item { border-left: 3px solid var(--accent-primary); padding-left: 14px; }
+    .faq-mini-q { font-size: 14px; font-weight: 700; color: var(--text-primary); margin-bottom: 4px; }
+    .faq-mini-a { font-size: 13px; color: var(--text-secondary); line-height: 1.5; }
+  </style>
+</head>
+<body>
+  <header class="site-nav">
+    <a href="index.html" class="brand-wrapper">
+      <img src="assets/icon48.png" alt="ImgDrop Logo" class="brand-icon">
+      <span class="brand-name">ImgDrop</span>
+    </a>
+    <nav>
+      <ul class="nav-links">
+        <li><a href="index.html" class="nav-link">Home</a></li>
+        <li><a href="convert.html" class="nav-link">Convert</a></li>
+        <li><a href="compress.html" class="nav-link">Compress</a></li>
+        <li><a href="resize.html" class="nav-link">Resize</a></li>
+        <li><a href="crop.html" class="nav-link">Crop</a></li>
+        <li><a href="pdf.html" class="nav-link">PDF Tools</a></li>
+      </ul>
+    </nav>
+  </header>
+
+  <main class="main-content" style="max-width:800px;">
+    <h1 style="font-size:32px; font-weight:800; margin-bottom:8px;">Contact Us</h1>
+    <p style="color:var(--text-secondary); margin-bottom:32px; font-size:15px;">We read every message and typically respond within 24 hours.</p>
+
+    <div class="tool-card" style="line-height:1.75; font-size:14.5px; color:var(--text-secondary);">
+
+      <h2 style="color:var(--text-primary); font-size:20px; margin:0 0 16px 0;">Get in Touch</h2>
+
+      <div class="contact-grid">
+        <div class="contact-card">
+          <div class="contact-card-icon">📧</div>
+          <div class="contact-card-title">Email Support</div>
+          <div class="contact-card-desc">For any questions, bug reports, or feedback, email us directly.</div>
+          <a href="mailto:redyforthefourthphase@gmail.com">redyforthefourthphase@gmail.com</a>
+        </div>
+        <div class="contact-card">
+          <div class="contact-card-icon">🐛</div>
+          <div class="contact-card-title">Report a Bug</div>
+          <div class="contact-card-desc">Found a conversion issue or something not working? Let us know and we will fix it fast.</div>
+          <a href="mailto:redyforthefourthphase@gmail.com?subject=Bug Report - ImgDrop">Report a Bug</a>
+        </div>
+        <div class="contact-card">
+          <div class="contact-card-icon">💡</div>
+          <div class="contact-card-title">Feature Request</div>
+          <div class="contact-card-desc">Have an idea for a new tool or an improvement? We would love to hear it.</div>
+          <a href="mailto:redyforthefourthphase@gmail.com?subject=Feature Request - ImgDrop">Suggest a Feature</a>
+        </div>
+        <div class="contact-card">
+          <div class="contact-card-icon">🤝</div>
+          <div class="contact-card-title">Business Enquiries</div>
+          <div class="contact-card-desc">For partnerships, advertising, or collaboration opportunities.</div>
+          <a href="mailto:redyforthefourthphase@gmail.com?subject=Business Enquiry - ImgDrop">Get in Touch</a>
+        </div>
+      </div>
+
+      <hr style="border:none; border-top:1px solid var(--border-glass); margin:28px 0;">
+
+      <h2 style="color:var(--text-primary); font-size:20px; margin:0 0 16px 0;">Quick Answers</h2>
+      <div class="faq-mini">
+        <div class="faq-mini-item">
+          <div class="faq-mini-q">Are my images uploaded anywhere?</div>
+          <div class="faq-mini-a">No. ImgDrop processes everything 100% locally in your browser. Your files never leave your device.</div>
+        </div>
+        <div class="faq-mini-item">
+          <div class="faq-mini-q">Why is my compressed image slightly under my target size?</div>
+          <div class="faq-mini-a">JPEG compression works on blocks of pixels, not individual bytes. The output will always be at or below your target - never above it.</div>
+        </div>
+        <div class="faq-mini-item">
+          <div class="faq-mini-q">Which formats does ImgDrop support?</div>
+          <div class="faq-mini-a">Input: JPG, PNG, WebP, AVIF, GIF, BMP. Output: JPG, PNG, WebP, AVIF, PDF.</div>
+        </div>
+        <div class="faq-mini-item">
+          <div class="faq-mini-q">Is ImgDrop free forever?</div>
+          <div class="faq-mini-a">Yes. ImgDrop is and will remain completely free with no usage limits, subscriptions, or watermarks.</div>
+        </div>
+      </div>
+
+      <hr style="border:none; border-top:1px solid var(--border-glass); margin:28px 0;">
+
+      <p style="font-size:13px;">You can also review our <a href="privacy.html" style="color:var(--text-primary); text-decoration:underline;">Privacy Policy</a>, <a href="terms.html" style="color:var(--text-primary); text-decoration:underline;">Terms of Service</a>, or learn <a href="about.html" style="color:var(--text-primary); text-decoration:underline;">About ImgDrop</a>.</p>
+
+    </div>
+  </main>
+
+  <footer class="site-footer">
+    <div class="footer-links">
+      <a href="png-to-jpg.html" class="footer-link">PNG to JPG</a>
+      <a href="webp-to-jpg.html" class="footer-link">WebP to JPG</a>
+      <a href="jpg-to-png.html" class="footer-link">JPG to PNG</a>
+      <a href="compress.html" class="footer-link">Image Compressor</a>
+      <a href="compress-image-to-50kb.html" class="footer-link">Compress to 50KB</a>
+      <a href="compress-image-to-20kb.html" class="footer-link">Compress to 20KB</a>
+      <a href="compress-image-to-100kb.html" class="footer-link">Compress to 100KB</a>
+      <a href="resize.html" class="footer-link">Image Resizer</a>
+      <a href="crop.html" class="footer-link">Image Cropper</a>
+      <a href="pdf.html" class="footer-link">JPG to PDF</a>
+      <a href="about.html" class="footer-link">About</a>
+      <a href="contact.html" class="footer-link">Contact</a>
+      <a href="privacy.html" class="footer-link">Privacy Policy</a>
+      <a href="terms.html" class="footer-link">Terms of Service</a>
+      <a href="cookies.html" class="footer-link">Cookie Policy</a>
+    </div>
+    <p>2026 ImgDrop by Vinland Studio. All rights reserved. 100% Client-Side In-Browser Image Utilities.</p>
+  </footer>
+
+  <script src="js/cookie-consent.js"></script>
+</body>
+</html>
