@@ -154,10 +154,11 @@ export class ImgDropApp {
     const runId = ++this._activeRunId;
     const file = this.currentFiles[0];
 
-    // Use maximum quality when slider is inactive AND no target KB is set (pure conversion)
+    // Use high quality (0.92) when slider is inactive AND no target KB is set (pure conversion)
+    // Note: JPEG at 1.0 (100%) is LARGER than PNG for screenshots. 0.92 is visually identical but ~35% smaller.
     const qualCheckbox = document.getElementById('qualityCheckbox');
     const sliderActive = qualCheckbox ? qualCheckbox.checked : true;
-    const effectiveQuality = (!sliderActive && !this.targetSizeKB) ? 1.0 : this.currentQuality;
+    const effectiveQuality = (!sliderActive && !this.targetSizeKB) ? 0.92 : Math.min(this.currentQuality, 0.95);
 
     const options = {
       format: this.currentFormat,
