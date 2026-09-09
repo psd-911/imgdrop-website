@@ -13,6 +13,9 @@
     { "source": "/crop", "destination": "/crop.html" },
     { "source": "/jpg-to-pdf", "destination": "/pdf.html" },
     { "source": "/pdf", "destination": "/pdf.html" },
+    { "source": "/compress-image-to-50kb", "destination": "/compress-image-to-50kb.html" },
+    { "source": "/compress-image-to-20kb", "destination": "/compress-image-to-20kb.html" },
+    { "source": "/compress-image-to-100kb", "destination": "/compress-image-to-100kb.html" },
     { "source": "/privacy", "destination": "/privacy.html" },
     { "source": "/terms", "destination": "/terms.html" },
     { "source": "/cookies", "destination": "/cookies.html" }

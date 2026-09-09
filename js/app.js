@@ -1,4 +1,4 @@
-﻿/**
+/**
  * ImgDrop Web - Master Application Controller
  * Handles drag-and-drop, UI state, live conversions, and download actions.
  */
@@ -12,7 +12,7 @@ export class ImgDropApp {
     this.defaultMode = config.defaultMode || 'convert'; // 'convert' | 'compress' | 'resize' | 'crop' | 'pdf'
     this.currentFormat = config.defaultFormat || 'image/jpeg';
     this.currentQuality = 0.85;
-    this.targetSizeKB = null;
+    this.targetSizeKB = config.defaultTargetKb || (this.defaultMode === 'compress' ? 50 : null);
     this.currentScale = 1.0;
     this.reqWidth = null;
     this.reqHeight = null;
@@ -241,6 +241,9 @@ export class ImgDropApp {
     // Target KB Size Input
     const targetInput = document.getElementById('targetSizeInput');
     if (targetInput) {
+      if (this.targetSizeKB) {
+        targetInput.value = this.targetSizeKB;
+      }
       targetInput.addEventListener('input', (e) => {
         const val = parseFloat(e.target.value);
         this.targetSizeKB = val && !isNaN(val) ? val : null;
@@ -250,10 +253,14 @@ export class ImgDropApp {
 
     // Target KB Size Quick Presets (e.g. 20KB, 50KB, 100KB, 200KB)
     document.querySelectorAll('.target-size-preset').forEach(btn => {
+      const kb = parseFloat(btn.dataset.kb);
+      if (this.targetSizeKB && kb === this.targetSizeKB) {
+        document.querySelectorAll('.target-size-preset').forEach(b => b.classList.remove('active'));
+        btn.classList.add('active');
+      }
       btn.addEventListener('click', () => {
         document.querySelectorAll('.target-size-preset').forEach(b => b.classList.remove('active'));
         btn.classList.add('active');
-        const kb = parseFloat(btn.dataset.kb);
         if (targetInput) targetInput.value = kb;
         this.targetSizeKB = kb;
         this.processActive();
