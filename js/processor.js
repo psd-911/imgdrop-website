@@ -1,4 +1,4 @@
-﻿/**
+/**
  * ImgDrop Web - High Performance Client-Side Image Processing Engine
  * 100% In-Browser Canvas API processing. Zero server upload.
  */
@@ -122,31 +122,73 @@ export class ImageProcessor {
   }
 
   /**
-   * Helper: Binary search compression to hit a target max file size (in KB)
+   * Helper: Binary search compression to strictly stay under target max file size (in KB)
    */
   static async _compressToTargetSize(canvas, format, targetKB) {
-    const targetBytes = targetKB * 1024;
-    let minQ = 0.05;
-    let maxQ = 0.98;
-    let bestBlob = null;
+    // 0.5% safety threshold ensures displayed size never rounds over targetKB
+    const targetBytes = Math.floor(targetKB * 1024 * 0.995);
+    let minQ = 0.01;
+    let maxQ = 0.99;
+    let bestFittingBlob = null;
 
-    for (let i = 0; i < 6; i++) {
+    // 8 binary search iterations gives ~0.39% quality precision
+    for (let i = 0; i < 8; i++) {
       const midQ = (minQ + maxQ) / 2;
       const blob = await this._canvasToBlob(canvas, format, midQ);
 
-      if (!bestBlob || Math.abs(blob.size - targetBytes) < Math.abs(bestBlob.size - targetBytes)) {
-        bestBlob = blob;
-      }
-
-      if (blob.size > targetBytes) {
-        maxQ = midQ;
-      } else {
+      if (blob.size <= targetBytes) {
+        // Fits under target limit! Save candidate and try higher quality
+        bestFittingBlob = blob;
         minQ = midQ;
-        bestBlob = blob;
+      } else {
+        // Exceeded limit: must reduce quality
+        maxQ = midQ;
       }
     }
 
-    return bestBlob || (await this._canvasToBlob(canvas, format, 0.8));
+    if (bestFittingBlob) {
+      return bestFittingBlob;
+    }
+
+    // If lowest quality still exceeds target size, scale down dimensions
+    let scale = 0.9;
+    while (scale >= 0.1) {
+      const scaledCanvas = document.createElement('canvas');
+      scaledCanvas.width = Math.max(1, Math.round(canvas.width * scale));
+      scaledCanvas.height = Math.max(1, Math.round(canvas.height * scale));
+      const ctx = scaledCanvas.getContext('2d');
+      ctx.imageSmoothingEnabled = true;
+      ctx.imageSmoothingQuality = 'high';
+      if (format === 'image/jpeg') {
+        ctx.fillStyle = '#FFFFFF';
+        ctx.fillRect(0, 0, scaledCanvas.width, scaledCanvas.height);
+      }
+      ctx.drawImage(canvas, 0, 0, scaledCanvas.width, scaledCanvas.height);
+
+      let sMinQ = 0.1;
+      let sMaxQ = 0.95;
+      let sFittingBlob = null;
+
+      for (let j = 0; j < 6; j++) {
+        const sMidQ = (sMinQ + sMaxQ) / 2;
+        const blob = await this._canvasToBlob(scaledCanvas, format, sMidQ);
+        if (blob.size <= targetBytes) {
+          sFittingBlob = blob;
+          sMinQ = sMidQ;
+        } else {
+          sMaxQ = sMidQ;
+        }
+      }
+
+      if (sFittingBlob) {
+        return sFittingBlob;
+      }
+
+      scale -= 0.15;
+    }
+
+    // Absolute fallback: minimal quality
+    return await this._canvasToBlob(canvas, format, 0.01);
   }
 
   static _canvasToBlob(canvas, format, quality) {
