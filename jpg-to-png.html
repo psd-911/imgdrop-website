@@ -39,6 +39,32 @@
   </script>
 
   <link rel="stylesheet" href="css/style.css">
+
+  <!-- Google FAQ Rich Snippet Structured Data -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    "mainEntity": [
+      {
+        "@type": "Question",
+        "name": "Why convert JPG to PNG?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "PNG is a lossless format, which prevents generational quality loss if you plan to edit the image repeatedly in tools like Figma or Photoshop."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Does converting JPG to PNG make the background transparent?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Converting a JPG to PNG saves the image in the PNG container, but does not automatically remove backgrounds. For transparent backgrounds, use an image editor or crop tool."
+        }
+      }
+    ]
+  }
+  </script>
 </head>
 <body>
 

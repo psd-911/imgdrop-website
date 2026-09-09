@@ -39,6 +39,32 @@
   </script>
 
   <link rel="stylesheet" href="css/style.css">
+
+  <!-- Google FAQ Rich Snippet Structured Data -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    "mainEntity": [
+      {
+        "@type": "Question",
+        "name": "Why do so many images download as .webp?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Modern websites use WebP because it compresses well for faster web loading. However, many desktop apps, older software, and submission portals don't recognize WebP files. Converting them to JPG makes them universally usable."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Is there any quality loss when converting WebP to JPG?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "ImgDrop re-renders the WebP pixels at high resolution onto an HTML5 canvas before encoding as JPEG with quality up to 100%, preserving crispness with no perceptible artifacts."
+        }
+      }
+    ]
+  }
+  </script>
 </head>
 <body>
 
