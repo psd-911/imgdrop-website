@@ -3,9 +3,9 @@
  * Handles drag-and-drop, UI state, live conversions, and download actions.
  */
 
-import { ImageProcessor } from './processor.js';
-import { PDFBuilder } from './pdf-builder.js';
-import { InteractiveCropper } from './cropper.js';
+import { ImageProcessor } from './processor.js?v=2';
+import { PDFBuilder } from './pdf-builder.js?v=2';
+import { InteractiveCropper } from './cropper.js?v=2';
 
 export class ImgDropApp {
   constructor(config = {}) {
