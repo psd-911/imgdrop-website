@@ -99,8 +99,13 @@ export class ImageProcessor {
 
     // Compression Handling
     let finalBlob;
+    let outWidth = canvas.width;
+    let outHeight = canvas.height;
     if (targetSizeKB && targetSizeKB > 0 && (format === 'image/jpeg' || format === 'image/webp')) {
-      finalBlob = await this._compressToTargetSize(canvas, format, targetSizeKB);
+      const targetRes = await this._compressToTargetSize(canvas, format, targetSizeKB);
+      finalBlob = targetRes.blob;
+      outWidth = targetRes.width;
+      outHeight = targetRes.height;
     } else {
       finalBlob = await this._canvasToBlob(canvas, format, quality);
     }
@@ -112,8 +117,8 @@ export class ImageProcessor {
       blob: finalBlob,
       blobUrl: blobUrl,
       filename: filename,
-      width: canvas.width,
-      height: canvas.height,
+      width: outWidth,
+      height: outHeight,
       origSize: origSize,
       size: finalBlob.size,
       format: format,
@@ -125,14 +130,13 @@ export class ImageProcessor {
    * Helper: Binary search compression to strictly stay under target max file size (in KB)
    */
   static async _compressToTargetSize(canvas, format, targetKB) {
-    // 0.5% safety threshold ensures displayed size never rounds over targetKB
-    const targetBytes = Math.floor(targetKB * 1024 * 0.995);
+    const targetBytes = Math.floor(targetKB * 1024);
     let minQ = 0.01;
     let maxQ = 0.99;
     let bestFittingBlob = null;
 
-    // 8 binary search iterations gives ~0.39% quality precision
-    for (let i = 0; i < 8; i++) {
+    // 10 binary search iterations gives ~0.09% quality precision
+    for (let i = 0; i < 10; i++) {
       const midQ = (minQ + maxQ) / 2;
       const blob = await this._canvasToBlob(canvas, format, midQ);
 
@@ -147,29 +151,32 @@ export class ImageProcessor {
     }
 
     if (bestFittingBlob) {
-      return bestFittingBlob;
+      return { blob: bestFittingBlob, width: canvas.width, height: canvas.height };
     }
 
-    // If lowest quality still exceeds target size, scale down dimensions
-    let scale = 0.9;
-    while (scale >= 0.1) {
+    // If lowest quality (0.01) at 100% dimensions still exceeds target size,
+    // gracefully scale down canvas dimensions step by step to preserve maximum resolution
+    for (let scale = 0.95; scale >= 0.1; scale -= 0.05) {
+      const scaledW = Math.max(1, Math.round(canvas.width * scale));
+      const scaledH = Math.max(1, Math.round(canvas.height * scale));
+
       const scaledCanvas = document.createElement('canvas');
-      scaledCanvas.width = Math.max(1, Math.round(canvas.width * scale));
-      scaledCanvas.height = Math.max(1, Math.round(canvas.height * scale));
+      scaledCanvas.width = scaledW;
+      scaledCanvas.height = scaledH;
       const ctx = scaledCanvas.getContext('2d');
       ctx.imageSmoothingEnabled = true;
       ctx.imageSmoothingQuality = 'high';
       if (format === 'image/jpeg') {
         ctx.fillStyle = '#FFFFFF';
-        ctx.fillRect(0, 0, scaledCanvas.width, scaledCanvas.height);
+        ctx.fillRect(0, 0, scaledW, scaledH);
       }
-      ctx.drawImage(canvas, 0, 0, scaledCanvas.width, scaledCanvas.height);
+      ctx.drawImage(canvas, 0, 0, scaledW, scaledH);
 
-      let sMinQ = 0.1;
+      let sMinQ = 0.05;
       let sMaxQ = 0.95;
       let sFittingBlob = null;
 
-      for (let j = 0; j < 6; j++) {
+      for (let j = 0; j < 8; j++) {
         const sMidQ = (sMinQ + sMaxQ) / 2;
         const blob = await this._canvasToBlob(scaledCanvas, format, sMidQ);
         if (blob.size <= targetBytes) {
@@ -181,14 +188,13 @@ export class ImageProcessor {
       }
 
       if (sFittingBlob) {
-        return sFittingBlob;
+        return { blob: sFittingBlob, width: scaledW, height: scaledH };
       }
-
-      scale -= 0.15;
     }
 
-    // Absolute fallback: minimal quality
-    return await this._canvasToBlob(canvas, format, 0.01);
+    // Absolute fallback: minimal quality on original canvas
+    const fallbackBlob = await this._canvasToBlob(canvas, format, 0.01);
+    return { blob: fallbackBlob, width: canvas.width, height: canvas.height };
   }
 
   static _canvasToBlob(canvas, format, quality) {

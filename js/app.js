@@ -26,6 +26,7 @@ export class ImgDropApp {
     this.currentFiles = [];
     this.currentResult = null;
     this.cropperInstance = null;
+    this._activeRunId = 0;
 
     this.init();
   }
@@ -148,6 +149,7 @@ export class ImgDropApp {
   async processActive() {
     if (this.currentFiles.length === 0) return;
 
+    const runId = ++this._activeRunId;
     const file = this.currentFiles[0];
     const options = {
       format: this.currentFormat,
@@ -165,6 +167,7 @@ export class ImgDropApp {
 
     if (this.defaultMode === 'pdf' && this.currentFiles.length > 0) {
       const pdfBlob = await PDFBuilder.buildPDF(this.currentFiles, { orientation: 'auto' });
+      if (runId !== this._activeRunId) return;
       const pdfUrl = URL.createObjectURL(pdfBlob);
       this.currentResult = {
         blob: pdfBlob,
@@ -179,10 +182,13 @@ export class ImgDropApp {
     }
 
     try {
-      this.currentResult = await ImageProcessor.process(file, options);
+      const result = await ImageProcessor.process(file, options);
+      if (runId !== this._activeRunId) return;
+      this.currentResult = result;
       this._updateUIResult();
       ImgDropApp.trackEvent('file_converted', { mode: this.defaultMode, format: this.currentFormat });
     } catch (err) {
+      if (runId !== this._activeRunId) return;
       console.error('Processing error:', err);
     }
   }
@@ -275,6 +281,7 @@ export class ImgDropApp {
       });
     }
 
+    let qualDebounce = null;
     if (qualSlider) {
       qualSlider.addEventListener('input', (e) => {
         if (qualSlider.disabled) return;
@@ -289,17 +296,19 @@ export class ImgDropApp {
         this.targetSizeKB = null;
         document.querySelectorAll('.target-size-preset').forEach(b => b.classList.remove('active'));
 
-        this.processActive();
+        clearTimeout(qualDebounce);
+        qualDebounce = setTimeout(() => this.processActive(), 100);
       });
     }
 
     // Target KB Size Input
+    let targetDebounce = null;
     if (targetInput) {
       if (this.targetSizeKB) {
         targetInput.value = this.targetSizeKB;
       }
-      targetInput.addEventListener('input', (e) => {
-        const rawVal = e.target.value.trim();
+      const triggerTargetProcess = () => {
+        const rawVal = targetInput.value.trim();
         const val = parseFloat(rawVal);
         if (val && !isNaN(val) && val > 0) {
           this.targetSizeKB = val;
@@ -310,7 +319,7 @@ export class ImgDropApp {
             qualSlider.style.opacity = '0.4';
             qualSlider.style.cursor = 'not-allowed';
             if (qualVal) {
-              qualVal.textContent = 'Auto (Target KB)';
+              qualVal.textContent = 'Disabled';
               qualVal.style.color = 'var(--text-muted)';
             }
           }
@@ -319,6 +328,15 @@ export class ImgDropApp {
           document.querySelectorAll('.target-size-preset').forEach(b => b.classList.remove('active'));
         }
         this.processActive();
+      };
+
+      targetInput.addEventListener('input', () => {
+        clearTimeout(targetDebounce);
+        targetDebounce = setTimeout(triggerTargetProcess, 300);
+      });
+      targetInput.addEventListener('change', () => {
+        clearTimeout(targetDebounce);
+        triggerTargetProcess();
       });
     }
 
@@ -330,6 +348,7 @@ export class ImgDropApp {
         btn.classList.add('active');
       }
       btn.addEventListener('click', () => {
+        clearTimeout(targetDebounce);
         document.querySelectorAll('.target-size-preset').forEach(b => b.classList.remove('active'));
         btn.classList.add('active');
         if (targetInput) targetInput.value = kb;
@@ -342,7 +361,7 @@ export class ImgDropApp {
           qualSlider.style.opacity = '0.4';
           qualSlider.style.cursor = 'not-allowed';
           if (qualVal) {
-            qualVal.textContent = 'Auto (Target KB)';
+            qualVal.textContent = 'Disabled';
             qualVal.style.color = 'var(--text-muted)';
           }
         }
@@ -354,14 +373,31 @@ export class ImgDropApp {
     const wInput = document.getElementById('resizeWidth');
     const hInput = document.getElementById('resizeHeight');
     const lockAspect = document.getElementById('lockAspect');
+    let dimDebounce = null;
     if (wInput) {
       wInput.addEventListener('input', () => {
+        clearTimeout(dimDebounce);
+        dimDebounce = setTimeout(() => {
+          this.reqWidth = parseInt(wInput.value) || null;
+          this.processActive();
+        }, 250);
+      });
+      wInput.addEventListener('change', () => {
+        clearTimeout(dimDebounce);
         this.reqWidth = parseInt(wInput.value) || null;
         this.processActive();
       });
     }
     if (hInput) {
       hInput.addEventListener('input', () => {
+        clearTimeout(dimDebounce);
+        dimDebounce = setTimeout(() => {
+          this.reqHeight = parseInt(hInput.value) || null;
+          this.processActive();
+        }, 250);
+      });
+      hInput.addEventListener('change', () => {
+        clearTimeout(dimDebounce);
         this.reqHeight = parseInt(hInput.value) || null;
         this.processActive();
       });
