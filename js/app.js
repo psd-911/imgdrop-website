@@ -229,24 +229,45 @@ export class ImgDropApp {
     // Quality Slider
     const qualSlider = document.getElementById('qualitySlider');
     const qualVal = document.getElementById('qualityValText');
+    const targetInput = document.getElementById('targetSizeInput');
+
     if (qualSlider) {
       qualSlider.addEventListener('input', (e) => {
         const val = parseInt(e.target.value);
         this.currentQuality = val / 100;
         if (qualVal) qualVal.textContent = `${val}%`;
+
+        // Reset Target Max File Size when using Quality Slider
+        if (targetInput) {
+          targetInput.value = '';
+        }
+        this.targetSizeKB = null;
+        document.querySelectorAll('.target-size-preset').forEach(b => b.classList.remove('active'));
+
         this.processActive();
       });
     }
 
     // Target KB Size Input
-    const targetInput = document.getElementById('targetSizeInput');
     if (targetInput) {
       if (this.targetSizeKB) {
         targetInput.value = this.targetSizeKB;
+        if (qualVal) qualVal.textContent = 'Auto (Target KB)';
       }
       targetInput.addEventListener('input', (e) => {
-        const val = parseFloat(e.target.value);
-        this.targetSizeKB = val && !isNaN(val) ? val : null;
+        const rawVal = e.target.value.trim();
+        const val = parseFloat(rawVal);
+        if (val && !isNaN(val) && val > 0) {
+          this.targetSizeKB = val;
+          if (qualVal) qualVal.textContent = 'Auto (Target KB)';
+        } else {
+          this.targetSizeKB = null;
+          document.querySelectorAll('.target-size-preset').forEach(b => b.classList.remove('active'));
+          if (qualSlider && qualVal) {
+            qualVal.textContent = `${qualSlider.value}%`;
+            this.currentQuality = parseInt(qualSlider.value) / 100;
+          }
+        }
         this.processActive();
       });
     }
@@ -263,6 +284,7 @@ export class ImgDropApp {
         btn.classList.add('active');
         if (targetInput) targetInput.value = kb;
         this.targetSizeKB = kb;
+        if (qualVal) qualVal.textContent = 'Auto (Target KB)';
         this.processActive();
       });
     });
