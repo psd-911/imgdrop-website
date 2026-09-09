@@ -11,7 +11,9 @@ export class ImgDropApp {
   constructor(config = {}) {
     this.defaultMode = config.defaultMode || 'convert'; // 'convert' | 'compress' | 'resize' | 'crop' | 'pdf'
     this.currentFormat = config.defaultFormat || 'image/jpeg';
-    this.currentQuality = 0.85;
+    // For compress/resize modes, default quality 0.85; for pure convert, use 0.92 (high quality, minimal compression)
+    this.currentQuality = config.defaultQuality !== undefined ? config.defaultQuality
+      : (this.defaultMode === 'compress' ? 0.85 : 0.92);
     this.targetSizeKB = config.defaultTargetKb || (this.defaultMode === 'compress' ? 50 : null);
     this.currentScale = 1.0;
     this.reqWidth = null;
@@ -151,9 +153,15 @@ export class ImgDropApp {
 
     const runId = ++this._activeRunId;
     const file = this.currentFiles[0];
+
+    // Use maximum quality when slider is inactive AND no target KB is set (pure conversion)
+    const qualCheckbox = document.getElementById('qualityCheckbox');
+    const sliderActive = qualCheckbox ? qualCheckbox.checked : true;
+    const effectiveQuality = (!sliderActive && !this.targetSizeKB) ? 1.0 : this.currentQuality;
+
     const options = {
       format: this.currentFormat,
-      quality: this.currentQuality,
+      quality: effectiveQuality,
       targetSizeKB: this.targetSizeKB,
       scale: this.currentScale,
       width: this.reqWidth,
