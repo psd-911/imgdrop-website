@@ -186,16 +186,18 @@
           </div>
 
           <div class="control-group">
-            <div style="display:flex; justify-content:space-between; align-items:center;">
-              <label class="control-label">Quality Level</label>
-              <span id="qualityValText" style="font-size:12px; font-weight:700;">85%</span>
-            </div>
-            <input type="range" id="qualitySlider" min="10" max="100" value="85" style="width:100%; cursor:pointer;">
+            <label class="control-label">Target Max File Size (in KB)</label>
+            <input type="number" id="targetSizeInput" placeholder="e.g. 50 (for max 50 KB output)" class="input-field">
           </div>
 
           <div class="control-group">
-            <label class="control-label">Target Max File Size (in KB)</label>
-            <input type="number" id="targetSizeInput" placeholder="e.g. 50 (for max 50 KB output)" class="input-field">
+            <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:6px;">
+              <label style="font-size:13px; font-weight:600; color:var(--text-primary); display:flex; align-items:center; gap:8px; cursor:pointer;">
+                <input type="checkbox" id="qualityCheckbox"> Quality Level Slider
+              </label>
+              <span id="qualityValText" style="font-size:12px; font-weight:700; color:var(--text-muted);">Disabled</span>
+            </div>
+            <input type="range" id="qualitySlider" min="10" max="100" value="85" disabled style="width:100%; cursor:not-allowed; opacity:0.4;">
           </div>
 
           <div class="control-group">

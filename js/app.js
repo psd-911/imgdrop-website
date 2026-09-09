@@ -226,13 +226,58 @@ export class ImgDropApp {
       });
     });
 
-    // Quality Slider
+    // Quality Slider & Checkbox
     const qualSlider = document.getElementById('qualitySlider');
     const qualVal = document.getElementById('qualityValText');
+    const qualCheckbox = document.getElementById('qualityCheckbox');
     const targetInput = document.getElementById('targetSizeInput');
+
+    if (qualCheckbox && qualSlider) {
+      // Pre-disabled by default
+      qualSlider.disabled = !qualCheckbox.checked;
+      qualSlider.style.opacity = qualCheckbox.checked ? '1' : '0.4';
+      qualSlider.style.cursor = qualCheckbox.checked ? 'pointer' : 'not-allowed';
+      if (qualVal) {
+        qualVal.textContent = qualCheckbox.checked ? `${qualSlider.value}%` : 'Disabled';
+        qualVal.style.color = qualCheckbox.checked ? 'var(--text-primary)' : 'var(--text-muted)';
+      }
+
+      qualCheckbox.addEventListener('change', () => {
+        const isChecked = qualCheckbox.checked;
+        qualSlider.disabled = !isChecked;
+        qualSlider.style.opacity = isChecked ? '1' : '0.4';
+        qualSlider.style.cursor = isChecked ? 'pointer' : 'not-allowed';
+
+        if (isChecked) {
+          // Manual Slider Enabled: clear Target Max File Size
+          if (targetInput) targetInput.value = '';
+          this.targetSizeKB = null;
+          document.querySelectorAll('.target-size-preset').forEach(b => b.classList.remove('active'));
+
+          const val = parseInt(qualSlider.value);
+          this.currentQuality = val / 100;
+          if (qualVal) {
+            qualVal.textContent = `${val}%`;
+            qualVal.style.color = 'var(--text-primary)';
+          }
+        } else {
+          // Slider Disabled: fall back to Target Size
+          if (qualVal) {
+            qualVal.textContent = 'Disabled';
+            qualVal.style.color = 'var(--text-muted)';
+          }
+          if (targetInput && (!targetInput.value || targetInput.value.trim() === '')) {
+            targetInput.value = '50';
+            this.targetSizeKB = 50;
+          }
+        }
+        this.processActive();
+      });
+    }
 
     if (qualSlider) {
       qualSlider.addEventListener('input', (e) => {
+        if (qualSlider.disabled) return;
         const val = parseInt(e.target.value);
         this.currentQuality = val / 100;
         if (qualVal) qualVal.textContent = `${val}%`;
@@ -252,21 +297,26 @@ export class ImgDropApp {
     if (targetInput) {
       if (this.targetSizeKB) {
         targetInput.value = this.targetSizeKB;
-        if (qualVal) qualVal.textContent = 'Auto (Target KB)';
       }
       targetInput.addEventListener('input', (e) => {
         const rawVal = e.target.value.trim();
         const val = parseFloat(rawVal);
         if (val && !isNaN(val) && val > 0) {
           this.targetSizeKB = val;
-          if (qualVal) qualVal.textContent = 'Auto (Target KB)';
+          // Uncheck and disable slider when using target size
+          if (qualCheckbox && qualSlider) {
+            qualCheckbox.checked = false;
+            qualSlider.disabled = true;
+            qualSlider.style.opacity = '0.4';
+            qualSlider.style.cursor = 'not-allowed';
+            if (qualVal) {
+              qualVal.textContent = 'Auto (Target KB)';
+              qualVal.style.color = 'var(--text-muted)';
+            }
+          }
         } else {
           this.targetSizeKB = null;
           document.querySelectorAll('.target-size-preset').forEach(b => b.classList.remove('active'));
-          if (qualSlider && qualVal) {
-            qualVal.textContent = `${qualSlider.value}%`;
-            this.currentQuality = parseInt(qualSlider.value) / 100;
-          }
         }
         this.processActive();
       });
@@ -284,7 +334,18 @@ export class ImgDropApp {
         btn.classList.add('active');
         if (targetInput) targetInput.value = kb;
         this.targetSizeKB = kb;
-        if (qualVal) qualVal.textContent = 'Auto (Target KB)';
+
+        // Uncheck and disable slider when clicking preset
+        if (qualCheckbox && qualSlider) {
+          qualCheckbox.checked = false;
+          qualSlider.disabled = true;
+          qualSlider.style.opacity = '0.4';
+          qualSlider.style.cursor = 'not-allowed';
+          if (qualVal) {
+            qualVal.textContent = 'Auto (Target KB)';
+            qualVal.style.color = 'var(--text-muted)';
+          }
+        }
         this.processActive();
       });
     });
