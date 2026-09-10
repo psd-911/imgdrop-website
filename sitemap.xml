@@ -1,97 +1,97 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url>
-    <loc>https://imgdrop.me/</loc>
+    <loc>https://www.imgdrop.me/</loc>
     <lastmod>2026-08-31</lastmod>
     <changefreq>daily</changefreq>
     <priority>1.0</priority>
   </url>
   <url>
-    <loc>https://imgdrop.me/compress.html</loc>
+    <loc>https://www.imgdrop.me/compress.html</loc>
     <lastmod>2026-09-09</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.9</priority>
   </url>
   <url>
-    <loc>https://imgdrop.me/compress-image-to-50kb.html</loc>
+    <loc>https://www.imgdrop.me/compress-image-to-50kb.html</loc>
     <lastmod>2026-09-09</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.95</priority>
   </url>
   <url>
-    <loc>https://imgdrop.me/compress-image-to-20kb.html</loc>
+    <loc>https://www.imgdrop.me/compress-image-to-20kb.html</loc>
     <lastmod>2026-09-09</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.95</priority>
   </url>
   <url>
-    <loc>https://imgdrop.me/compress-image-to-100kb.html</loc>
+    <loc>https://www.imgdrop.me/compress-image-to-100kb.html</loc>
     <lastmod>2026-09-09</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.95</priority>
   </url>
   <url>
-    <loc>https://imgdrop.me/png-to-jpg.html</loc>
+    <loc>https://www.imgdrop.me/png-to-jpg.html</loc>
     <lastmod>2026-08-31</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.9</priority>
   </url>
   <url>
-    <loc>https://imgdrop.me/webp-to-jpg.html</loc>
+    <loc>https://www.imgdrop.me/webp-to-jpg.html</loc>
     <lastmod>2026-08-31</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.9</priority>
   </url>
   <url>
-    <loc>https://imgdrop.me/jpg-to-png.html</loc>
+    <loc>https://www.imgdrop.me/jpg-to-png.html</loc>
     <lastmod>2026-08-31</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.9</priority>
   </url>
   <url>
-    <loc>https://imgdrop.me/resize.html</loc>
+    <loc>https://www.imgdrop.me/resize.html</loc>
     <lastmod>2026-08-31</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://imgdrop.me/crop.html</loc>
+    <loc>https://www.imgdrop.me/crop.html</loc>
     <lastmod>2026-08-31</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://imgdrop.me/pdf.html</loc>
+    <loc>https://www.imgdrop.me/pdf.html</loc>
     <lastmod>2026-08-31</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://imgdrop.me/privacy.html</loc>
+    <loc>https://www.imgdrop.me/privacy.html</loc>
     <lastmod>2026-08-31</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.3</priority>
   </url>
   <url>
-    <loc>https://imgdrop.me/terms.html</loc>
+    <loc>https://www.imgdrop.me/terms.html</loc>
     <lastmod>2026-08-31</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.3</priority>
   </url>
   <url>
-    <loc>https://imgdrop.me/cookies.html</loc>
+    <loc>https://www.imgdrop.me/cookies.html</loc>
     <lastmod>2026-09-09</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.3</priority>
   </url>
   <url>
-    <loc>https://imgdrop.me/about.html</loc>
+    <loc>https://www.imgdrop.me/about.html</loc>
     <lastmod>2026-09-09</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.5</priority>
   </url>
   <url>
-    <loc>https://imgdrop.me/contact.html</loc>
+    <loc>https://www.imgdrop.me/contact.html</loc>
     <lastmod>2026-09-09</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.5</priority>
